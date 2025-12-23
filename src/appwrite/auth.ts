@@ -1,26 +1,15 @@
-import config from "../config/config";
+import conf from "../config/conf";
 import { Client, Account, ID } from 'appwrite';
 
-class SignupRequest {
+interface SignupRequest {
     email: string;
     password: string;
     name: string;
-
-    constructor(email: string, password: string, name: string) {
-        this.email = email;
-        this.password = password;
-        this.name = name;
-    }
 }
 
-class LoginRequest {
+interface LoginRequest {
     email: string;
     password: string;
-
-    constructor(email: string, password: string) {
-        this.email = email;
-        this.password = password;
-    }
 }
 
 export class AuthService {
@@ -29,7 +18,7 @@ export class AuthService {
     account: Account;
 
     constructor() {
-        this.client.setEndpoint(config.appwriteUrl).setProject(config.appwriteProjectId);
+        this.client.setEndpoint(conf.appwriteUrl).setProject(conf.appwriteProjectId);
         this.account = new Account(this.client);
     }
 
