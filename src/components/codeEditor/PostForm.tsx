@@ -5,18 +5,25 @@ import appwriteService from '../../appwrite/config'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
+interface PostFormData {
+    title: string;
+    slug: string;
+    content: string;
+    status: string;
+    image: FileList;
+}
 
 function PostForm({ post }: any) {
 
     const navigate = useNavigate();
     const userData = useSelector((state: any) => state.user.userData)
-    const { register, handleSubmit, control, getValues, watch, setValue } = useForm({
+
+    const { register, handleSubmit, control, getValues, watch, setValue } = useForm<PostFormData>({
         defaultValues: {
             title: post?.title || '',
             slug: post?.slug || '',
             content: post?.content || '',
-            status: post?.status || false,
-            featuredImage: post?.featuredImage || ''
+            status: post?.status || 'active',
         }
     });
 
@@ -98,7 +105,7 @@ function PostForm({ post }: any) {
                     type="file"
                     className="mb-4"
                     accept="image/png, image/jpg, image/jpeg, image/gif"
-                    {...register("featuredImage", { required: !post })}
+                    {...register("image", { required: !post })}
                 />
                 {post && (
                     <div className="w-full mb-4">
