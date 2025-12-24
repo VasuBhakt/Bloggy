@@ -132,16 +132,12 @@ export class ConfigService {
         }
     }
 
-    async filePreview(fileId: string) {
-        try {
-            const preview = await this.bucket.getFilePreview({
-                bucketId: conf.appwriteBucketId,
-                fileId: fileId
-            });
-            return preview;
-        } catch (error) {
-            console.log("Appwrite service :: filePreview :: error", error);
-        }
+    filePreview(fileId: string) {
+        const preview = this.bucket.getFilePreview({
+            bucketId: conf.appwriteBucketId,
+            fileId: fileId
+        });
+        return preview.toString();
     }
 }
 
