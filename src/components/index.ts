@@ -7,6 +7,7 @@ import Button from "./button/Button";
 import Card from "./cards/Card";
 import Input from "./input/Input";
 import Select from "./input/Select";
+import RTE from "./codeEditor/RTE";
 
 
-export { Header, Footer, LogoutBtn, Container, Logo, Button, Card, Input, Select };
+export { Header, Footer, LogoutBtn, Container, Logo, Button, Card, Input, Select, RTE };
