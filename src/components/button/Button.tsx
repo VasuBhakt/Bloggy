@@ -1,9 +1,9 @@
 interface ButtonProps {
-    children: React.ReactNode;
-    type: string;
-    bgColor: string;
-    textColor: string;
-    className: string;
+    children?: React.ReactNode;
+    type?: string;
+    bgColor?: string;
+    textColor?: string;
+    className?: string;
 }
 
 function Button({

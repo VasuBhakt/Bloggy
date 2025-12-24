@@ -1,9 +1,9 @@
-import React, { useId } from "react"
+import React, { useId, type InputHTMLAttributes } from "react"
 
-interface InputProps {
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
     label: string;
-    type: string;
-    className: string;
+    type?: string;
+    className?: string;
 }
 const Input = React.forwardRef(function Input({
     label,
