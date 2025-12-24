@@ -22,7 +22,7 @@ function PostForm({ post }: any) {
 
     const submit = async (data: any) => {
         if (post) {
-            const file = data.featuredImage[0] ? await appwriteService.uploadFile(data.featuredImage[0]) : null;
+            const file = data.image[0] ? await appwriteService.uploadFile(data.image[0]) : null;
             if (file) {
                 appwriteService.deleteFile(post.featuredImage);
             }
@@ -34,7 +34,7 @@ function PostForm({ post }: any) {
                 navigate(`/post/${dbPost.$id}`)
             }
         } else {
-            const file = data.featuredImage[0] ? await appwriteService.uploadFile(data.featuredImage[0]) : null;
+            const file = data.image[0] ? await appwriteService.uploadFile(data.image[0]) : null;
             if (file) {
                 const fileId = file.$id;
                 data.featuredImage = fileId;
