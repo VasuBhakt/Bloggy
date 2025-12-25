@@ -133,11 +133,12 @@ export class ConfigService {
         }
     }
 
-    filePreview(fileId: string) {
-        const preview = this.bucket.getFilePreview({
+    fileView(fileId: string) {
+        const preview = this.bucket.getFileView({
             bucketId: conf.appwriteBucketId,
             fileId: fileId
         });
+        console.log(preview);
         return preview.toString();
     }
 }
