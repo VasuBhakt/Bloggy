@@ -24,10 +24,10 @@ function HomePage() {
                             <h1 className='text-8xl font-bold text-gradient-lime animate-fade-in-up py-4'>
                                 Welcome to Bloggy!
                             </h1>
-                            <h2 className='text-6xl py-4 font-light animate-fade-in-up' style={{ animationDelay: '0.2s' }}>
+                            <h2 className='text-6xl py-4 font-light animate-fade-in-up opacity-0' style={{ animationDelay: '0.2s' }}>
                                 Read. Write. Connect.
                             </h2>
-                            <p className='py-12 text-3xl text-gray-700 max-w-4xl animate-fade-in-up' style={{ animationDelay: '0.4s' }}>
+                            <p className='py-12 text-3xl text-gray-700 max-w-4xl animate-fade-in-up opacity-0' style={{ animationDelay: '0.4s' }}>
                                 Bloggy is a simple and powerful blogging platform built around one idea: Read. Write. Connect.
                                 It gives creators a space to share their thoughts, stories, and ideas while discovering content from
                                 others around the world. Whether you're writing your first blog post or building a growing audience,

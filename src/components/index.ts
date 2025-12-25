@@ -11,5 +11,6 @@ import RTE from "./codeEditor/RTE";
 import PostForm from "./codeEditor/PostForm";
 import Login from "./auth/Login";
 import Signup from "./auth/Signup";
+import NavButton from "./button/NavButton";
 
-export { Header, Footer, LogoutBtn, Container, Logo, Button, Card, Input, Select, RTE, PostForm, Login, Signup };
+export { Header, Footer, LogoutBtn, Container, Logo, Button, Card, Input, Select, RTE, PostForm, Login, Signup, NavButton };
