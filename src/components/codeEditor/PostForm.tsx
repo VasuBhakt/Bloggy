@@ -16,7 +16,7 @@ interface PostFormData {
 function PostForm({ post }: any) {
 
     const navigate = useNavigate();
-    const userData = useSelector((state: any) => state.user.userData)
+    const userData = useSelector((state: any) => state.auth.userData)
 
     const { register, handleSubmit, control, getValues, watch, setValue } = useForm<PostFormData>({
         defaultValues: {

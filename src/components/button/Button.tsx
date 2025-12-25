@@ -1,4 +1,6 @@
-interface ButtonProps {
+import type { InputHTMLAttributes } from "react";
+
+interface ButtonProps extends InputHTMLAttributes<HTMLButtonElement> {
     children?: React.ReactNode;
     type?: string;
     bgColor?: string;

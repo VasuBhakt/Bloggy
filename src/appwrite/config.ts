@@ -1,7 +1,7 @@
 import conf from "../config/conf";
 import { Client, TablesDB, Storage, Query, ID } from 'appwrite';
 
-interface Article {
+export interface Article {
     title: string;
     slug: string;
     content: string;
@@ -95,11 +95,12 @@ export class ConfigService {
 
     async getAllArticles(queries = [Query.equal("status", "active")]) {
         try {
-            return await this.tables.listRows({
+            const articles = await this.tables.listRows({
                 databaseId: conf.appwriteDatabaseId,
                 tableId: conf.appwriteCollectionId,
                 queries: queries
             });
+            return articles.rows;
         } catch (error) {
             console.log("Appwrite service :: getAllArticles :: error", error);
         }
