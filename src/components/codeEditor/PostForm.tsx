@@ -47,7 +47,7 @@ function PostForm({ post }: any) {
                 data.featuredImage = fileId;
                 const dbPost = await appwriteService.createArticle({
                     ...data,
-                    userId: userData.$id,
+                    userid: userData.$id,
                 });
                 if (dbPost) {
                     navigate(`/post/${dbPost.$id}`)
@@ -61,8 +61,8 @@ function PostForm({ post }: any) {
             return value
                 .trim()
                 .toLowerCase()
-                .replace(/^[a-zA-Z\d]+/g, '-')
-                .replace(/\s/g, '-')
+                .replace(/[^a-z0-9\s]+/g, "-")
+                .replace(/\s/g, "-")
         }
         return '';
     }, [])

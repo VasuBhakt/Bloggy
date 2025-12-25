@@ -10,7 +10,7 @@ interface CardProps {
 function Card({ $id, title, featuredImage }: CardProps) {
     return (
         <>
-            <Link to={`post/${$id}`}>
+            <Link to={`/post/${$id}`}>
                 <div className='w-full bg-blue-300 rounded-xl p-4'>
                     <div className='w-full justify-center mb-4'>
                         <img src={appwriteService.filePreview(featuredImage)} alt={title} className='rounded-xl' />

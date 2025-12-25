@@ -7,7 +7,7 @@ export interface Article {
     content: string;
     featuredImage: string;
     status: string;
-    userId: string;
+    userid: string;
 }
 
 interface UpdateRequest {
@@ -30,7 +30,7 @@ export class ConfigService {
         this.bucket = new Storage(this.client);
     }
 
-    async createArticle({ title, slug, content, featuredImage, status, userId }: Article) {
+    async createArticle({ title, slug, content, featuredImage, status, userid }: Article) {
         try {
             return await this.tables.createRow({
                 databaseId: conf.appwriteDatabaseId,
@@ -41,7 +41,7 @@ export class ConfigService {
                     content,
                     featuredImage,
                     status,
-                    userId,
+                    userid,
                 }
             });
         } catch (error) {
