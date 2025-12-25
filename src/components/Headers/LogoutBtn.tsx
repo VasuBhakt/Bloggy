@@ -12,9 +12,10 @@ function LogoutBtn() {
         authService.logout()
             .then(() => {
                 dispatch(logout());
+            })
+            .then(() => {
                 navigate("/");
             })
-
             .catch((error) => {
                 console.log("LogoutBtn :: logoutUser :: error", error);
             })

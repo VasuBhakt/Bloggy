@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react'
 import appwriteService from '../appwrite/config'
 import { Container, Card } from '../components'
+import { useSelector } from 'react-redux'
 
 function HomePage() {
     const [posts, setPosts] = useState<any>([])
+    const authStatus = useSelector((state: any) => state.auth.status);
     useEffect(() => {
         appwriteService.getAllArticles().then((posts) => {
             if (posts) {
@@ -12,7 +14,7 @@ function HomePage() {
         })
     }, [])
 
-    if (posts.length === 0) {
+    if (!authStatus) {
         return (
             <Container>
                 <div className='flex flex-wrap'>
