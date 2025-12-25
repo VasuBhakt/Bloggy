@@ -13,7 +13,7 @@ function Card({ $id, title, featuredImage }: CardProps) {
             <Link to={`/post/${$id}`}>
                 <div className='w-full bg-blue-300 rounded-xl p-4'>
                     <div className='w-full justify-center mb-4'>
-                        <img src={appwriteService.fileView(featuredImage)} alt={title} className='rounded-xl' />
+                        <img src={appwriteService.fileView(featuredImage)} alt={title} className='rounded-xl h-48 w-full object-cover' />
                     </div>
                     <h2 className='text-2xl font-bold'>{title}</h2>
                 </div>

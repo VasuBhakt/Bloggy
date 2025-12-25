@@ -21,7 +21,7 @@ function PostForm({ post }: any) {
     const { register, handleSubmit, control, getValues, watch, setValue } = useForm<PostFormData>({
         defaultValues: {
             title: post?.title || '',
-            slug: post?.slug || '',
+            slug: post?.$id || post?.slug || '',
             content: post?.content || '',
             status: post?.status || 'active',
         }
@@ -69,7 +69,7 @@ function PostForm({ post }: any) {
 
     useEffect(() => {
         const subscription = watch((value, { name }) => {
-            if (name === 'title') {
+            if (name === 'title' && value.title) {
                 setValue('slug', slugTransform(value.title), { shouldValidate: true });
             }
         });
@@ -93,9 +93,7 @@ function PostForm({ post }: any) {
                     placeholder="Slug"
                     className="mb-4"
                     {...register("slug", { required: true })}
-                    onInput={(e) => {
-                        setValue("slug", slugTransform(e.currentTarget.value), { shouldValidate: true });
-                    }}
+                    readOnly
                 />
                 <RTE label="Content :" name="content" control={control} defaultValue={getValues("content")} />
             </div>
