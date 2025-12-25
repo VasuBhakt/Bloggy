@@ -37,12 +37,18 @@ export class AuthService {
             }
         } catch (error) {
             console.log("Appwrite service :: createAccount :: error", error);
+            throw error;
         }
-        return null;
     }
 
     async login({ email, password }: LoginRequest) {
         try {
+            try {
+                // Pre-emptively delete existing sessions to avoid "Session is active" error
+                await this.account.deleteSession({ sessionId: 'current' });
+            } catch {
+                // No active session, safe to proceed
+            }
             const session = await this.account.createEmailPasswordSession({
                 email: email,
                 password: password
@@ -50,8 +56,8 @@ export class AuthService {
             return session;
         } catch (error) {
             console.log("Appwrite service :: login :: error", error);
+            throw error; // Re-throw so component can handle UI error message
         }
-        return null;
     }
 
     async getCurrentUser() {

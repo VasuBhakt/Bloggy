@@ -40,7 +40,7 @@ function Login() {
                     Don&apos;t have an account? &nbsp;
                     <Link to='/register' className='font-medium text-primary transition-all duration-200 hover:underline'>Sign up</Link>
                 </p>
-                {error && <p className='text-red-500 text-center'>{error}</p>}
+
                 <form onSubmit={handleSubmit(login)} className='mt-8'>
                     <div className='space-y-5'>
                         <Input label='Email: ' placeholder='Enter your email' type="email" {...register("email", {
@@ -53,6 +53,7 @@ function Login() {
                         <Input label='Password: ' placeholder='Enter your password' type="password" {...register("password", {
                             required: true,
                         })} />
+                        {error && <p className='text-red-500 text-center'>{error}</p>}
                         <Button type="submit" className='w-full'>Sign in</Button>
                     </div>
                 </form>

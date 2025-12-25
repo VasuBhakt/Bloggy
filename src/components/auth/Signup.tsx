@@ -43,7 +43,6 @@ function Signup() {
                         Already have an account? &nbsp;
                         <Link to='/login' className='font-medium text-primary transition-all duration-200 hover:underline'>Sign in</Link>
                     </p>
-                    {error && <p className='text-red-500 text-center'>{error}</p>}
                     <form onSubmit={handleSubmit(signup)}>
                         <div className='space-y-5'>
                             <Input label='Name: ' placeholder='Enter your name' type="text" {...register("name", {
@@ -59,6 +58,7 @@ function Signup() {
                             <Input label='Password: ' placeholder='Enter your password' type="password" {...register("password", {
                                 required: true,
                             })} />
+                            {error && <p className='text-red-500 text-center'>{error}</p>}
                             <Button type="submit" className='w-full'>Sign up</Button>
                         </div>
                     </form>
