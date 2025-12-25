@@ -1,16 +1,20 @@
 import { useDispatch } from "react-redux"
 import authService from "../../appwrite/auth"
 import { logout } from "../../features/authSlice"
+import { useNavigate } from "react-router-dom";
 
 function LogoutBtn() {
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const logoutUser = () => {
         authService.logout()
             .then(() => {
                 dispatch(logout());
+                navigate("/");
             })
+
             .catch((error) => {
                 console.log("LogoutBtn :: logoutUser :: error", error);
             })
