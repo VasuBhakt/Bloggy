@@ -2,12 +2,15 @@ import { useEffect, useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import authService from '../appwrite/auth'
 import { Container } from '../components'
+import { useDispatch } from 'react-redux'
+import { logout } from '../features/authSlice'
 
 function Verify() {
     const [searchParams] = useSearchParams()
     const [status, setStatus] = useState<'loading' | 'success' | 'error'>('loading')
     const [message, setMessage] = useState('Verifying your email...')
     const navigate = useNavigate()
+    const dispatch = useDispatch()
 
     useEffect(() => {
         const userId = searchParams.get('userId')
@@ -19,18 +22,21 @@ function Verify() {
                     setStatus('success')
                     setMessage('Email verified successfully!')
                     setTimeout(() => {
-                        navigate('/')
+                        navigate('/login')
                     }, 3000)
                 })
                 .catch((error: any) => {
                     setStatus('error')
                     setMessage(error.message || 'Verification failed. The link may be expired.')
+                    authService.logout().then(() => dispatch(logout()))
                 })
         } else {
             setStatus('error')
             setMessage('Invalid verification link.')
+            authService.logout().then(() => dispatch(logout()))
         }
-    }, [searchParams, navigate])
+
+    }, [searchParams, navigate, dispatch])
 
     return (
         <div className='w-full py-20'>
@@ -43,7 +49,7 @@ function Verify() {
                         {message}
                     </p>
                     {status === 'success' && (
-                        <p className='mt-4 text-gray-500'>Redirecting to login in 3 seconds...</p>
+                        <p className='mt-4 text-gray-500'>Redirecting to home in 3 seconds...</p>
                     )}
                     {status === 'error' && (
                         <button
