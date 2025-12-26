@@ -9,11 +9,14 @@ function HomePage() {
     const authStatus = useSelector((state: any) => state.auth.status);
     const user = useSelector((state: any) => state.auth.userData);
     useEffect(() => {
-        appwriteService.getAllArticlesOfUser(user.$id).then((posts) => {
-            if (posts) {
-                setPosts(posts)
-            }
-        })
+        if (authStatus) {
+            appwriteService.getAllArticlesOfUser(user.$id).then((posts) => {
+                if (posts) {
+                    setPosts(posts)
+                }
+            })
+        }
+
 
     }, [])
 
