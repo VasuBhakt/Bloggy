@@ -28,7 +28,7 @@ function AllPosts() {
     }, [searchTerm, posts])
 
     return (
-        <div className="w-full min-h-screen bg-gradient-to-br from-gray-50 to-lime-50/30">
+        <div className="w-full min-h-screen bg-linear-to-br from-gray-50 to-lime-50/30">
             {/* Hero Section */}
             <div className="bg-black text-white py-16">
                 <Container>
