@@ -5,7 +5,7 @@ import App from './App.tsx'
 import { Provider } from 'react-redux'
 import store from './store/store.ts'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import { AddPost, AllPosts, EditPost, HomePage, Login, Post, Signup } from './pages'
+import { AddPost, AllPosts, EditPost, HomePage, Login, Post, Signup, Verify } from './pages'
 import Protected from './layout/AuthLayout.tsx'
 
 
@@ -16,7 +16,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: "",
-        element: <HomePage />
+        element: (
+          <Protected authentication={false}>
+            <HomePage />
+          </Protected>
+        )
       },
       {
         path: "login",
@@ -44,7 +48,11 @@ const router = createBrowserRouter([
       },
       {
         path: "all-posts",
-        element: <AllPosts />
+        element: (
+          <Protected authentication={false}>
+            <AllPosts />
+          </Protected>
+        )
       },
       {
         path: "edit-post/:slug",
@@ -57,8 +65,16 @@ const router = createBrowserRouter([
       },
       {
         path: "post/:slug",
-        element: <Post />
+        element: (
+          <Protected authentication={false}>
+            <Post />
+          </Protected>
+        )
       },
+      {
+        path: "verify",
+        element: <Verify />
+      }
     ]
 
   }

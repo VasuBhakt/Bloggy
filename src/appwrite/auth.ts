@@ -31,12 +31,37 @@ export class AuthService {
                 name: name
             });
             if (userAccount) {
-                return this.login({ email, password });
+                await this.login({ email, password });
+                await this.verifyEmail();
+                return userAccount;
             } else {
                 throw userAccount;
             }
         } catch (error) {
             console.log("Appwrite service :: createAccount :: error", error);
+            throw error;
+        }
+    }
+
+    async verifyEmail() {
+        try {
+            return await this.account.createEmailVerification({
+                url: "http://localhost:5173/verify"
+            });
+        } catch (error) {
+            console.log("Appwrite service :: verifyEmail :: error", error);
+            throw error;
+        }
+    }
+
+    async updateVerify({ userId, secret }: { userId: string, secret: string }) {
+        try {
+            return await this.account.updateEmailVerification({
+                userId: userId,
+                secret: secret
+            })
+        } catch (error) {
+            console.log("Appwrite service :: updateVerify :: error", error);
             throw error;
         }
     }

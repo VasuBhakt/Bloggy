@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { BlockVerificationUI } from '../pages'
 
 interface ProtectedProps {
     children: React.ReactNode,
@@ -15,6 +16,7 @@ export default function Protected({
     const navigate = useNavigate();
     const [loader, setLoader] = useState(true);
     const authStatus = useSelector((state: any) => state.auth.status);
+    const userData = useSelector((state: any) => state.auth.userData);
 
     useEffect(() => {
         if (authentication && authStatus !== authentication) {
@@ -24,7 +26,11 @@ export default function Protected({
         }
         setLoader(false);
     }, [authStatus, navigate, authentication])
-    return (
-        loader ? <h1>Loading...</h1> : children
-    )
+    if (loader) return <h1>Loading...</h1>
+
+    if (authStatus && userData && !userData.emailVerification) {
+        return <BlockVerificationUI />
+    }
+
+    return <>{children}</>
 }
