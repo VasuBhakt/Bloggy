@@ -31,7 +31,7 @@ function App() {
   return !loading ? (
     <div className='min-h-screen flex flex-col bg-no-repeat w-full items-center justify-center'>
       <Header />
-      <main className="grow w-full flex flex-col items-center justify-center h-full">
+      <main className="grow w-full flex flex-col h-full">
         <Outlet />
       </main>
       <Footer />
