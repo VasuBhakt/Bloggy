@@ -5,12 +5,13 @@ interface CardProps {
     $id: string;
     title: string;
     featuredImage: string;
+    slug: string;
 }
 
-function Card({ $id, title, featuredImage }: CardProps) {
+function Card({ $id, title, featuredImage, slug }: CardProps) {
     return (
         <>
-            <Link to={`/post/${$id}`}>
+            <Link to={`/post/${$id}/${slug}`}>
                 <div className='w-full bg-blue-300 rounded-xl p-4'>
                     <div className='w-full justify-center mb-4'>
                         <img src={appwriteService.fileView(featuredImage)} alt={title} className='rounded-xl h-48 w-full object-cover' />

@@ -38,7 +38,7 @@ function PostForm({ post }: any) {
                 featuredImage: file ? file.$id : post.featuredImage,
             })
             if (dbPost) {
-                navigate(`/post/${dbPost.$id}`)
+                navigate(`/post/${dbPost.$id}/${data.slug}`)
             }
         } else {
             const file = data.image[0] ? await appwriteService.uploadFile(data.image[0]) : null;
@@ -50,7 +50,7 @@ function PostForm({ post }: any) {
                     userid: userData.$id,
                 });
                 if (dbPost) {
-                    navigate(`/post/${dbPost.$id}`)
+                    navigate(`/post/${dbPost.$id}/${data.slug}`)
                 }
             }
         }

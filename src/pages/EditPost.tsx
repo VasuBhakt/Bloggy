@@ -5,12 +5,12 @@ import { useNavigate, useParams } from "react-router-dom";
 
 function EditPost() {
     const [post, setPost] = useState<any>(null);
-    const { slug } = useParams();
+    const { id } = useParams(); // Use id from compound URL
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (slug) {
-            appwriteService.getArticle(slug).then((post) => {
+        if (id) {
+            appwriteService.getArticle(id).then((post) => {
                 if (post) {
                     setPost(post);
                 }
@@ -18,7 +18,7 @@ function EditPost() {
         } else {
             navigate('/');
         }
-    }, [slug, navigate])
+    }, [id, navigate])
     return (
         post ? (
             <div className="py-8">

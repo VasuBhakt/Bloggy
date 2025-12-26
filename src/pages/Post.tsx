@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 
 export default function Post() {
     const [post, setPost] = useState<any>();
-    const { slug } = useParams();
+    const { id } = useParams(); // Extract both id and slug from URL
     const navigate = useNavigate();
 
     const userData = useSelector((state: any) => state.auth.userData);
@@ -15,8 +15,9 @@ export default function Post() {
     const isAuthor = post && userData ? post.userid === userData.$id : false;
 
     useEffect(() => {
-        if (slug) {
-            appwriteService.getArticle(slug).then((post) => {
+        if (id) {
+            // Use the id (not slug) to fetch the article for guaranteed uniqueness
+            appwriteService.getArticle(id).then((post) => {
                 if (post) {
                     setPost(post);
                 } else {
@@ -26,7 +27,7 @@ export default function Post() {
         } else {
             navigate("/");
         }
-    }, [slug, navigate]);
+    }, [id, navigate]);
 
     const deletePost = () => {
         if (post) {
@@ -47,7 +48,7 @@ export default function Post() {
 
                     {isAuthor && (
                         <div className="absolute right-6 top-6">
-                            <Link to={`/edit-post/${post.$id}`}>
+                            <Link to={`/edit-post/${post.$id}/${post.slug}`}>
                                 <Button bgColor="bg-green-500" className="mr-3">
                                     Edit
                                 </Button>

@@ -9,7 +9,7 @@ function HomePage() {
     const authStatus = useSelector((state: any) => state.auth.status);
     const user = useSelector((state: any) => state.auth.userData);
     useEffect(() => {
-        appwriteService.getAllArticles().then((posts) => {
+        appwriteService.getAllArticlesOfUser(user.$id).then((posts) => {
             if (posts) {
                 setPosts(posts)
             }
@@ -59,7 +59,7 @@ function HomePage() {
 
                         {/* Left Column: Greeting & Stats */}
                         <div className='md:col-span-2 space-y-8'>
-                            <div className='bg-white p-10 rounded-3xl shadow-sm border border-black/5'>
+                            <div className='bg-white p-10 rounded-3xl shadow-sm border border-black/20'>
                                 <h1 className='text-5xl font-bold text-black mb-4'>
                                     Welcome back, <span className='text-lime-600'>{user?.name}</span>!
                                 </h1>
@@ -72,21 +72,16 @@ function HomePage() {
                                             + Create New Post
                                         </Button>
                                     </Link>
-                                    <Link to="/all-posts">
-                                        <Button bgColor='bg-white' textColor='text-black' className='px-8 py-3 rounded-2xl border border-black/10 hover:bg-gray-50 duration-200'>
-                                            Explore Feed
-                                        </Button>
-                                    </Link>
                                 </div>
                             </div>
 
                             {/* Recent Posts Section */}
                             <div>
-                                <h2 className='text-2xl font-bold mb-6 px-4'>Your Recent Activity</h2>
+                                <h2 className='text-2xl font-bold mb-6 px-4'>Your Blogs</h2>
                                 <div className='flex flex-wrap -mx-2'>
-                                    {posts.slice(0, 4).map((post: any) => (
+                                    {posts.map((post: any) => (
                                         <div key={post.$id} className='p-2 w-full sm:w-1/2'>
-                                            <Card {...post} />
+                                            <Card $id={post.$id} title={post.title} featuredImage={post.featuredImage} slug={post.slug} />
                                         </div>
                                     ))}
                                     {posts.length === 0 && (

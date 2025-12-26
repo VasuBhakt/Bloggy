@@ -12,6 +12,7 @@ export interface Article {
 
 interface UpdateRequest {
     title: string;
+    slug: string;
     content: string;
     featuredImage: string;
     status: string;
@@ -35,9 +36,10 @@ export class ConfigService {
             return await this.tables.createRow({
                 databaseId: conf.appwriteDatabaseId,
                 tableId: conf.appwriteCollectionId,
-                rowId: slug,
+                rowId: ID.unique(), // Use unique ID instead of slug
                 data: {
                     title,
+                    slug, // Store slug as data for SEO
                     content,
                     featuredImage,
                     status,
@@ -49,14 +51,15 @@ export class ConfigService {
         }
     }
 
-    async updateArticle(slug: string, { title, content, featuredImage, status }: UpdateRequest) {
+    async updateArticle(id: string, { title, slug, content, featuredImage, status }: UpdateRequest) {
         try {
             return await this.tables.updateRow({
                 databaseId: conf.appwriteDatabaseId,
                 tableId: conf.appwriteCollectionId,
-                rowId: slug,
+                rowId: id, // Use the unique ID, not slug
                 data: {
                     title,
+                    slug, // Update slug as well
                     content,
                     featuredImage,
                     status,
@@ -67,12 +70,12 @@ export class ConfigService {
         }
     }
 
-    async deleteArticle(slug: string) {
+    async deleteArticle(id: string) {
         try {
             await this.tables.deleteRow({
                 databaseId: conf.appwriteDatabaseId,
                 tableId: conf.appwriteCollectionId,
-                rowId: slug,
+                rowId: id,
             });
             return true;
         } catch (error) {
@@ -81,15 +84,28 @@ export class ConfigService {
         }
     }
 
-    async getArticle(slug: string) {
+    async getArticle(id: string) {
         try {
             return await this.tables.getRow({
                 databaseId: conf.appwriteDatabaseId,
                 tableId: conf.appwriteCollectionId,
-                rowId: slug
+                rowId: id
             });
         } catch (error) {
             console.log("Appwrite service :: getArticle :: error", error);
+        }
+    }
+
+    async getAllArticlesOfUser(userid: string, queries = [Query.equal("userid", userid)]) {
+        try {
+            const articles = await this.tables.listRows({
+                databaseId: conf.appwriteDatabaseId,
+                tableId: conf.appwriteCollectionId,
+                queries: queries
+            });
+            return articles.rows;
+        } catch (error) {
+            console.log("Appwrite service :: getAllArticlesOfUser :: error", error);
         }
     }
 
