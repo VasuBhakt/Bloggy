@@ -4,7 +4,10 @@ import { Client, Account, ID } from 'appwrite';
 interface SignupRequest {
     email: string;
     password: string;
+    username: string;
     name: string;
+    phone: string;
+    country: string;
 }
 
 interface LoginRequest {
@@ -22,16 +25,28 @@ export class AuthService {
         this.account = new Account(this.client);
     }
 
-    async createAccount({ email, password, name }: SignupRequest) {
+    async createAccount({ email, password, name, username, phone, country }: SignupRequest) {
         try {
             const userAccount = await this.account.create({
                 userId: ID.unique(),
                 email: email,
                 password: password,
-                name: name
+                name: username,
             });
             if (userAccount) {
+                // We login first to have a session, then update preferences
                 await this.login({ email, password });
+
+                await this.account.updatePrefs({
+                    name,
+                    country
+                });
+
+                await this.account.updatePhone({
+                    phone: phone,
+                    password: password
+                })
+
                 await this.verifyEmail();
                 return userAccount;
             } else {

@@ -43,6 +43,9 @@ function Signup() {
                     </p>
                     <form onSubmit={handleSubmit(signup)}>
                         <div className='space-y-5'>
+                            <Input label='Username: ' placeholder='Choose a username' type="text" {...register("username", {
+                                required: true,
+                            })} />
                             <Input label='Name: ' placeholder='Enter your name' type="text" {...register("name", {
                                 required: true,
                             })} />
@@ -53,11 +56,20 @@ function Signup() {
                                         "Email address must be a valid address"
                                 }
                             })} />
+                            <div className='flex gap-4'>
+                                <Input label='Phone: ' placeholder='+1234567890' type="tel" {...register("phone", {
+                                    required: true,
+                                })} />
+                                <Input label='Country: ' placeholder='India' type="text" {...register("country", {
+                                    required: true,
+                                })} />
+                            </div>
                             <Input label='Password: ' placeholder='Enter your password' type="password" {...register("password", {
                                 required: true,
                             })} />
                             {error && <p className='text-red-500 text-center'>{error}</p>}
-                            <Button type="submit" className='w-full'>Sign up</Button>
+                            <Button type="submit" className='w-full'>Create Account</Button>
+
                         </div>
                     </form>
                 </div>

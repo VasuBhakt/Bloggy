@@ -79,11 +79,6 @@ function Header() {
                             </li>
                         </ul>
                         <ul className="flex ml-auto items-center">
-                            <li>
-                                <Link to="/add-post">
-                                    <NavButton label=" + Add Post" />
-                                </Link>
-                            </li>
                             {authStatus && (
                                 <li>
                                     <LogoutBtn />

@@ -7,12 +7,14 @@ import { Link } from 'react-router-dom'
 function HomePage() {
     const [posts, setPosts] = useState<any>([])
     const authStatus = useSelector((state: any) => state.auth.status);
+    const user = useSelector((state: any) => state.auth.userData);
     useEffect(() => {
         appwriteService.getAllArticles().then((posts) => {
             if (posts) {
                 setPosts(posts)
             }
         })
+
     }, [])
 
     if (!authStatus) {
@@ -51,17 +53,82 @@ function HomePage() {
         )
     } else {
         return (
-            <div className='w-full py-8'>
+            <div className='w-full py-12 grow'>
                 <Container>
-                    <div className='flex flex-wrap'>
-                        {posts.map((post: any) => (
-                            <div className='p-2 w-1/4'>
-                                <Card title={post.title} featuredImage={post.featuredImage} $id={post.$id} />
+                    <div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
+
+                        {/* Left Column: Greeting & Stats */}
+                        <div className='md:col-span-2 space-y-8'>
+                            <div className='bg-white p-10 rounded-3xl shadow-sm border border-black/5'>
+                                <h1 className='text-5xl font-bold text-black mb-4'>
+                                    Welcome back, <span className='text-lime-600'>{user?.name}</span>!
+                                </h1>
+                                <p className='text-xl text-gray-600 max-w-2xl'>
+                                    It's a great day to share something new with the world. Your readers are waiting for your next big idea!
+                                </p>
+                                <div className='mt-8 flex gap-4'>
+                                    <Link to="/add-post">
+                                        <Button className='px-8 py-3 rounded-2xl hover:scale-105 duration-200'>
+                                            + Create New Post
+                                        </Button>
+                                    </Link>
+                                    <Link to="/all-posts">
+                                        <Button bgColor='bg-white' textColor='text-black' className='px-8 py-3 rounded-2xl border border-black/10 hover:bg-gray-50 duration-200'>
+                                            Explore Feed
+                                        </Button>
+                                    </Link>
+                                </div>
                             </div>
-                        ))}
+
+                            {/* Recent Posts Section */}
+                            <div>
+                                <h2 className='text-2xl font-bold mb-6 px-4'>Your Recent Activity</h2>
+                                <div className='flex flex-wrap -mx-2'>
+                                    {posts.slice(0, 4).map((post: any) => (
+                                        <div key={post.$id} className='p-2 w-full sm:w-1/2'>
+                                            <Card {...post} />
+                                        </div>
+                                    ))}
+                                    {posts.length === 0 && (
+                                        <div className='p-8 text-center w-full bg-white rounded-3xl border border-dashed border-gray-300'>
+                                            <p className='text-gray-500'>You haven't posted anything yet. Start your journey today!</p>
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Right Column: Account Info */}
+                        <div className='space-y-8'>
+                            <div className='bg-black text-white p-8 rounded-3xl shadow-xl shadow-lime-900/10'>
+                                <h2 className='text-xl font-bold mb-6 text-lime-400'>Account Summary</h2>
+                                <div className='space-y-6'>
+                                    <div>
+                                        <p className='text-gray-400 text-sm mb-1 uppercase tracking-wider'>Full Name</p>
+                                        <p className='text-lg font-medium'>{user?.prefs?.name}</p>
+                                    </div>
+                                    <div>
+                                        <p className='text-gray-400 text-sm mb-1 uppercase tracking-wider'>Username</p>
+                                        <p className='text-lg font-medium'>@{user?.name || 'Not set'}</p>
+                                    </div>
+                                    <div>
+                                        <p className='text-gray-400 text-sm mb-1 uppercase tracking-wider'>Email Address</p>
+                                        <p className='text-lg font-medium'>{user?.email}</p>
+                                    </div>
+                                    <div>
+                                        <p className='text-gray-400 text-sm mb-1 uppercase tracking-wider'>Phone</p>
+                                        <p className='text-lg font-medium'>{user?.phone || 'Not set'}</p>
+                                    </div>
+                                    <div>
+                                        <p className='text-gray-400 text-sm mb-1 uppercase tracking-wider'>Country</p>
+                                        <p className='text-lg font-medium'>{user?.prefs?.country || 'Not set'}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </Container>
-
             </div>
         )
     }
