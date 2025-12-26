@@ -26,6 +26,7 @@ export default function Protected({
         }
         setLoader(false);
     }, [authStatus, navigate, authentication])
+
     if (loader) return <h1>Loading...</h1>
 
     if (authStatus && userData && !userData.emailVerification) {

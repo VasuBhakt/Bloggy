@@ -19,7 +19,7 @@ function Verify() {
                     setStatus('success')
                     setMessage('Email verified successfully!')
                     setTimeout(() => {
-                        navigate('/login')
+                        navigate('/')
                     }, 3000)
                 })
                 .catch((error: any) => {
