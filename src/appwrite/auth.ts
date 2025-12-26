@@ -38,8 +38,11 @@ export class AuthService {
                 await this.login({ email, password });
 
                 await this.account.updatePrefs({
-                    name,
-                    country
+                    prefs: {
+                        name: name,
+                        country: country
+                    }
+
                 });
 
                 await this.account.updatePhone({
