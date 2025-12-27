@@ -84,7 +84,7 @@ function HomePage() {
                                 <div className='flex flex-wrap -mx-2'>
                                     {posts.map((post: any) => (
                                         <div key={post.$id} className='p-2 w-1/2'>
-                                            <Card $id={post.$id} title={post.title} featuredImage={post.featuredImage} slug={post.slug} />
+                                            <Card $id={post.$id} title={post.title} featuredImage={post.featuredImage} slug={post.slug} username={post.username} />
                                         </div>
                                     ))}
                                     {posts.length === 0 && (

@@ -13,10 +13,10 @@ export interface AlgoliaPost {
     objectID: string;
     title: string;
     slug: string;
-    content: string;
     featuredImage: string;
     status: string;
     userId: string;
+    username: string;
     [key: string]: any;    // Allow other properties (fixes TypeScript error)
 }
 

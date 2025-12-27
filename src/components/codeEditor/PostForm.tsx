@@ -38,7 +38,9 @@ function PostForm({ post }: any) {
                 const dbPost = await appwriteService.updateArticle(post.$id, {
                     ...data,
                     featuredImage: file ? file.$id : post.featuredImage,
-                    status: data.status, // Explicitly pass status
+                    status: data.status,
+                    username: userData.username,
+                    name: userData.name
                 })
 
                 if (dbPost) {
@@ -46,10 +48,10 @@ function PostForm({ post }: any) {
                         objectID: dbPost.$id,
                         title: dbPost.title,
                         slug: dbPost.slug,
-                        content: dbPost.content,
                         featuredImage: dbPost.featuredImage,
                         status: dbPost.status,
                         userId: dbPost.userId,
+                        username: userData.username,
                     });
 
                     navigate(`/post/${dbPost.$id}/${data.slug}`)
@@ -62,6 +64,8 @@ function PostForm({ post }: any) {
                     const dbPost = await appwriteService.createArticle({
                         ...data,
                         userid: userData.$id,
+                        username: userData.username,
+                        name: userData.prefs?.name
                     });
 
                     if (dbPost) {
@@ -69,10 +73,10 @@ function PostForm({ post }: any) {
                             objectID: dbPost.$id,
                             title: dbPost.title,
                             slug: dbPost.slug,
-                            content: dbPost.content,
                             featuredImage: dbPost.featuredImage,
                             status: dbPost.status,
                             userId: dbPost.userId,
+                            username: userData.username,
                         });
 
                         navigate(`/post/${dbPost.$id}/${data.slug}`)

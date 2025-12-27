@@ -16,6 +16,7 @@ function Hit({ hit }: { hit: any }) {
                 featuredImage={hit.featuredImage}
                 $id={hit.objectID}
                 slug={hit.slug}
+                username={hit.username}
             />
         </div>
     );

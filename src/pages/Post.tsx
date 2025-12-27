@@ -105,21 +105,37 @@ export default function Post() {
 
                     {/* Content Section */}
                     <div className="p-8 md:p-12">
-                        <div className="mb-8 border-b border-gray-100 pb-8">
+                        <div className="border-b border-gray-100 mb-4">
                             <h1 className="text-3xl md:text-5xl font-bold text-gray-900 leading-tight mb-4">
                                 {post.title}
                             </h1>
-                            {/* You could add Date/Author info here if available in your Post model */}
-                            {/* <div className="text-gray-500">Published on {new Date(post.$createdAt).toLocaleDateString()}</div> */}
-                        </div>
+                            <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500 pb-4">
+                                <div className="flex items-center gap-2">
+                                    <div className="w-10 h-10 rounded-full bg-lime-100 flex items-center justify-center text-lime-700 font-bold">
+                                        {post.name ? post.name.charAt(0).toUpperCase() : "A"}
+                                    </div>
+                                    <div>
+                                        <p className="font-semibold text-gray-900">{post.name || "Anonymous"}</p>
+                                        <p className="text-xs">@{post.username || "author"}</p>
+                                    </div>
+                                </div>
+                                <div className="hidden sm:block text-gray-300">|</div>
+                                <div className="flex items-center gap-1">
+                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                    </svg>
+                                    <span>{new Date(post.$createdAt).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+                                </div>
+                            </div>
+                        </div >
 
                         <div className="prose prose-lg max-w-none prose-headings:text-gray-900 prose-p:text-gray-600 prose-a:text-lime-600 prose-img:rounded-2xl">
                             {parse(post.content)}
                         </div>
-                    </div>
-                </div>
-            </Container>
-        </div>
+                    </div >
+                </div >
+            </Container >
+        </div >
     ) : null;
 }
 

@@ -8,6 +8,8 @@ export interface Article {
     featuredImage: string;
     status: string;
     userid: string;
+    username: string;
+    name: string;
 }
 
 interface UpdateRequest {
@@ -31,7 +33,7 @@ export class ConfigService {
         this.bucket = new Storage(this.client);
     }
 
-    async createArticle({ title, slug, content, featuredImage, status, userid }: Article) {
+    async createArticle({ title, slug, content, featuredImage, status, userid, username, name }: Article) {
         try {
             return await this.tables.createRow({
                 databaseId: conf.appwriteDatabaseId,
@@ -39,11 +41,13 @@ export class ConfigService {
                 rowId: ID.unique(), // Use unique ID instead of slug
                 data: {
                     title,
-                    slug, // Store slug as data for SEO
+                    slug,
                     content,
                     featuredImage,
                     status,
                     userid,
+                    username,
+                    name
                 }
             });
         } catch (error) {
@@ -59,7 +63,7 @@ export class ConfigService {
                 rowId: id, // Use the unique ID, not slug
                 data: {
                     title,
-                    slug, // Update slug as well
+                    slug,
                     content,
                     featuredImage,
                     status,
