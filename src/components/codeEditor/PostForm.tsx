@@ -2,6 +2,7 @@ import { useCallback, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { Button, Input, Select, RTE } from '../index'
 import appwriteService from '../../appwrite/config'
+import algoliaService from '../../algolia/algoliaService'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
@@ -28,31 +29,59 @@ function PostForm({ post }: any) {
     });
 
     const submit = async (data: any) => {
-        if (post) {
-            const file = data.image[0] ? await appwriteService.uploadFile(data.image[0]) : null;
-            if (file) {
-                appwriteService.deleteFile(post.featuredImage);
-            }
-            const dbPost = await appwriteService.updateArticle(post.$id, {
-                ...data,
-                featuredImage: file ? file.$id : post.featuredImage,
-            })
-            if (dbPost) {
-                navigate(`/post/${dbPost.$id}/${data.slug}`)
-            }
-        } else {
-            const file = data.image[0] ? await appwriteService.uploadFile(data.image[0]) : null;
-            if (file) {
-                const fileId = file.$id;
-                data.featuredImage = fileId;
-                const dbPost = await appwriteService.createArticle({
+        try {
+            if (post) {
+                const file = data.image[0] ? await appwriteService.uploadFile(data.image[0]) : null;
+                if (file) {
+                    appwriteService.deleteFile(post.featuredImage);
+                }
+                const dbPost = await appwriteService.updateArticle(post.$id, {
                     ...data,
-                    userid: userData.$id,
-                });
+                    featuredImage: file ? file.$id : post.featuredImage,
+                })
+
                 if (dbPost) {
+                    // Update in Algolia
+                    await algoliaService.updatePost({
+                        objectID: dbPost.$id,
+                        title: dbPost.title,
+                        slug: dbPost.slug,
+                        content: dbPost.content,
+                        featuredImage: dbPost.featuredImage,
+                        status: dbPost.status,
+                        userId: dbPost.userId,
+                    });
+
                     navigate(`/post/${dbPost.$id}/${data.slug}`)
                 }
+            } else {
+                const file = data.image[0] ? await appwriteService.uploadFile(data.image[0]) : null;
+                if (file) {
+                    const fileId = file.$id;
+                    data.featuredImage = fileId;
+                    const dbPost = await appwriteService.createArticle({
+                        ...data,
+                        userid: userData.$id,
+                    });
+
+                    if (dbPost) {
+                        // Add to Algolia
+                        await algoliaService.addPost({
+                            objectID: dbPost.$id,
+                            title: dbPost.title,
+                            slug: dbPost.slug,
+                            content: dbPost.content,
+                            featuredImage: dbPost.featuredImage,
+                            status: dbPost.status,
+                            userId: dbPost.userId,
+                        });
+
+                        navigate(`/post/${dbPost.$id}/${data.slug}`)
+                    }
+                }
             }
+        } catch (error) {
+            console.error("Error submitting post:", error);
         }
     }
 
