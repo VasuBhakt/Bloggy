@@ -39,8 +39,8 @@ function PostForm({ post }: any) {
                     ...data,
                     featuredImage: file ? file.$id : post.featuredImage,
                     status: data.status,
-                    username: userData.username,
-                    name: userData.name
+                    username: userData.name,
+                    name: userData.prefs?.name
                 })
 
                 if (dbPost) {
@@ -51,7 +51,7 @@ function PostForm({ post }: any) {
                         featuredImage: dbPost.featuredImage,
                         status: dbPost.status,
                         userId: dbPost.userId,
-                        username: userData.username,
+                        username: userData.name,
                     });
 
                     navigate(`/post/${dbPost.$id}/${data.slug}`)
@@ -64,7 +64,7 @@ function PostForm({ post }: any) {
                     const dbPost = await appwriteService.createArticle({
                         ...data,
                         userid: userData.$id,
-                        username: userData.username,
+                        username: userData.name,
                         name: userData.prefs?.name
                     });
 
@@ -76,7 +76,7 @@ function PostForm({ post }: any) {
                             featuredImage: dbPost.featuredImage,
                             status: dbPost.status,
                             userId: dbPost.userId,
-                            username: userData.username,
+                            username: userData.name,
                         });
 
                         navigate(`/post/${dbPost.$id}/${data.slug}`)
