@@ -69,29 +69,37 @@ export default function Post() {
 
                         {/* Author Floating Actions */}
                         {isAuthor && (
-                            <div className="absolute top-6 right-6 flex gap-3 z-10">
-                                <Link to={`/edit-post/${post.$id}/${post.slug}`}>
+                            <>
+                                <div className="absolute top-6 right-6 flex gap-3 z-10">
+                                    <Link to={`/edit-post/${post.$id}/${post.slug}`}>
+                                        <Button
+                                            bgColor="bg-lime-400"
+                                            className="text-black! hover:bg-lime-500 shadow-lg hover:shadow-xl transition-all font-bold px-6 py-2 rounded-full flex items-center gap-2"
+                                        >
+                                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                                            </svg>
+                                            Edit
+                                        </Button>
+                                    </Link>
                                     <Button
-                                        bgColor="bg-lime-400"
-                                        className="text-black! hover:bg-lime-500 shadow-lg hover:shadow-xl transition-all font-bold px-6 py-2 rounded-full flex items-center gap-2"
+                                        bgColor="bg-red-500"
+                                        className="text-white! hover:bg-red-600 shadow-lg hover:shadow-xl transition-all font-bold px-6 py-2 rounded-full flex items-center gap-2"
+                                        onClick={deletePost}
                                     >
                                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                         </svg>
-                                        Edit
+                                        Delete
                                     </Button>
-                                </Link>
-                                <Button
-                                    bgColor="bg-red-500"
-                                    className="text-white! hover:bg-red-600 shadow-lg hover:shadow-xl transition-all font-bold px-6 py-2 rounded-full flex items-center gap-2"
-                                    onClick={deletePost}
-                                >
-                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                    </svg>
-                                    Delete
-                                </Button>
-                            </div>
+                                </div>
+                                {post.status === 'inactive' && <div className="absolute top-6 left-6 flex gap-3 z-10">
+                                    <div className="text-white! bg-orange-600 shadow-lg hover:shadow-xl transition-all font-bold px-6 py-2 rounded-full flex items-center gap-2">
+                                        Inactive
+                                    </div>
+                                </div>}
+
+                            </>
                         )}
                     </div>
 

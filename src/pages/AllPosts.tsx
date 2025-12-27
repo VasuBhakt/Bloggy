@@ -22,6 +22,21 @@ function AllPosts() {
         <div className="py-12">
             <Container>
                 <h2 className="text-2xl font-bold mb-6 text-gray-800">Latest Stories</h2>
+                {posts.length === 0 && (
+                    <div className="flex flex-col items-center justify-center py-24 px-4 text-center">
+                        <div className="bg-gray-100 rounded-full p-5 mb-6">
+                            <span className="text-4xl">📝</span>
+                        </div>
+                        <h3 className="text-2xl font-semibold text-gray-800 mb-2">
+                            Nothing to read… yet
+                        </h3>
+                        <p className="text-gray-500 max-w-md">
+                            No stories here for now — but great ones are probably on the way.
+                            Why not give it a try yourself?
+                        </p>
+                    </div>
+                )}
+
                 {isLoading ? (
                     <div className="text-center py-20">Loading...</div>
                 ) : (
