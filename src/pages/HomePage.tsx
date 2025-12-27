@@ -78,12 +78,12 @@ function HomePage() {
                                 </div>
                             </div>
 
-                            {/* Recent Posts Section */}
+                            {/*Posts Section */}
                             <div>
                                 <h2 className='text-2xl font-bold mb-6 px-4'>Your Blogs</h2>
                                 <div className='flex flex-wrap -mx-2'>
                                     {posts.map((post: any) => (
-                                        <div key={post.$id} className='p-2 w-full sm:w-1/2'>
+                                        <div key={post.$id} className='p-2 w-1/2'>
                                             <Card $id={post.$id} title={post.title} featuredImage={post.featuredImage} slug={post.slug} />
                                         </div>
                                     ))}
