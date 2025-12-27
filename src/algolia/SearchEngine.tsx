@@ -2,13 +2,13 @@ import { liteClient as algoliasearch } from "algoliasearch/lite";
 import { Hits, InstantSearch, SearchBox, Configure, useInstantSearch } from "react-instantsearch";
 import conf from "../config/conf";
 import { Card, Container } from "../components";
-import { type ReactNode } from "react";
+import { useMemo, type ReactNode } from "react";
 
-// Initialize the search client with the Public Search Key
-const searchClient = algoliasearch(conf.algoliaApplicationId, conf.algoliaSearchApiKey);
 
 // This component renders a single search result
 function Hit({ hit }: { hit: any }) {
+    if (hit.status !== 'active') return null;
+
     return (
         <div className="transform transition-all duration-300 hover:scale-105">
             <Card
@@ -29,7 +29,7 @@ function SearchResults({ defaultView }: { defaultView: ReactNode }) {
     const isSearching = (uiState[conf.algoliaIndexName]?.query || "").length > 0;
 
     // Check if we have algolia results
-    const hasResults = results?.hits.length > 0;
+    const hasResults = results?.hits.some(hit => hit.status === 'active'); // Smart check
 
     if (isSearching) {
         return (
@@ -41,6 +41,7 @@ function SearchResults({ defaultView }: { defaultView: ReactNode }) {
                             item: "list-none"
                         }} />
                     </div>
+                    {/* Optional: Show message if no results found */}
                     {!hasResults && (
                         <div className="flex flex-col items-center justify-center py-20 text-center">
                             <div className="bg-gray-100 rounded-full p-6 mb-4">
@@ -68,10 +69,15 @@ interface SearchEngineProps {
 }
 
 function SearchEngine({ defaultView }: SearchEngineProps) {
+    // Initialize search client inside component to ensure fresh cache on mount
+    const searchClient = useMemo(() => {
+        return algoliasearch(conf.algoliaApplicationId, conf.algoliaSearchApiKey);
+    }, []);
+
     return (
         <div className="w-full min-h-screen">
             <InstantSearch searchClient={searchClient} indexName={conf.algoliaIndexName}>
-                <Configure hitsPerPage={8} />
+                <Configure hitsPerPage={20} />
 
                 <div className="bg-black text-white py-16">
                     <Container>
