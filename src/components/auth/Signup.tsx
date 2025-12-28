@@ -46,9 +46,6 @@ function Signup() {
                             <Input label='Username: ' placeholder='Choose a username' type="text" {...register("username", {
                                 required: true,
                             })} />
-                            <Input label='Name: ' placeholder='Enter your name' type="text" {...register("name", {
-                                required: true,
-                            })} />
                             <Input label='Email: ' placeholder='Enter your email' type="email" {...register("email", {
                                 required: true,
                                 validate: {
@@ -56,14 +53,6 @@ function Signup() {
                                         "Email address must be a valid address"
                                 }
                             })} />
-                            <div className='flex gap-4'>
-                                <Input label='Phone: ' placeholder='+1234567890' type="tel" {...register("phone", {
-                                    required: true,
-                                })} />
-                                <Input label='Country: ' placeholder='India' type="text" {...register("country", {
-                                    required: true,
-                                })} />
-                            </div>
                             <Input label='Password: ' placeholder='Enter your password' type="password" {...register("password", {
                                 required: true,
                             })} />

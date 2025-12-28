@@ -101,27 +101,36 @@ function HomePage() {
                             <div className='bg-black text-white p-8 rounded-3xl shadow-xl shadow-lime-900/10'>
                                 <h2 className='text-xl font-bold mb-6 text-lime-400'>Account Summary</h2>
                                 <div className='space-y-6'>
-                                    <div>
-                                        <p className='text-gray-400 text-sm mb-1 uppercase tracking-wider'>Full Name</p>
-                                        <p className='text-lg font-medium'>{user?.prefs?.name}</p>
-                                    </div>
+                                    {(user.prefs?.name !== '') &&
+                                        <div>
+                                            <p className='text-gray-400 text-sm mb-1 uppercase tracking-wider'>Full Name</p>
+                                            <p className='text-lg font-medium'>{user?.prefs?.name}</p>
+                                        </div>
+                                    }
                                     <div>
                                         <p className='text-gray-400 text-sm mb-1 uppercase tracking-wider'>Username</p>
-                                        <p className='text-lg font-medium'>@{user?.name || 'Not set'}</p>
+                                        <p className='text-lg font-medium'>@{user?.name}</p>
                                     </div>
                                     <div>
                                         <p className='text-gray-400 text-sm mb-1 uppercase tracking-wider'>Email Address</p>
                                         <p className='text-lg font-medium'>{user?.email}</p>
                                     </div>
-                                    <div>
-                                        <p className='text-gray-400 text-sm mb-1 uppercase tracking-wider'>Phone</p>
-                                        <p className='text-lg font-medium'>{user?.phone || 'Not set'}</p>
-                                    </div>
-                                    <div>
-                                        <p className='text-gray-400 text-sm mb-1 uppercase tracking-wider'>Country</p>
-                                        <p className='text-lg font-medium'>{user?.prefs?.country || 'Not set'}</p>
-                                    </div>
+                                    {(user.prefs?.phone !== '') &&
+                                        <div>
+                                            <p className='text-gray-400 text-sm mb-1 uppercase tracking-wider'>Phone</p>
+                                            <p className='text-lg font-medium'>{user?.prefs?.phone}</p>
+                                        </div>
+                                    }
+                                    {(user.prefs?.country !== '') &&
+                                        <div>
+                                            <p className='text-gray-400 text-sm mb-1 uppercase tracking-wider'>Country</p>
+                                            <p className='text-lg font-medium'>{user?.prefs?.country}</p>
+                                        </div>
+                                    }
                                 </div>
+                                <Link to="/profile">
+                                    <Button className='w-full'>Edit Profile</Button>
+                                </Link>
                             </div>
                         </div>
 

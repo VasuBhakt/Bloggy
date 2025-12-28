@@ -25,7 +25,7 @@ export class AuthService {
         this.account = new Account(this.client);
     }
 
-    async createAccount({ email, password, name, username, phone, country }: SignupRequest) {
+    async createAccount({ email, password, username }: SignupRequest) {
         try {
             const userAccount = await this.account.create({
                 userId: ID.unique(),
@@ -39,16 +39,12 @@ export class AuthService {
 
                 await this.account.updatePrefs({
                     prefs: {
-                        name: name,
-                        country: country
+                        name: '',
+                        country: '',
+                        phone: ''
                     }
 
                 });
-
-                await this.account.updatePhone({
-                    phone: phone,
-                    password: password
-                })
 
                 await this.verifyEmail();
                 return userAccount;
@@ -60,7 +56,21 @@ export class AuthService {
             throw error;
         }
     }
-
+    async updateProfile({ name, phone, country }: any) {
+        try {
+            await this.account.updatePrefs({
+                prefs: {
+                    name: name,
+                    country: country,
+                    phone: phone
+                }
+            })
+            return true;
+        } catch (error) {
+            console.log("Appwrite service :: updateProfile :: error", error);
+            throw error;
+        }
+    }
     async verifyEmail() {
         try {
             return await this.account.createEmailVerification({
