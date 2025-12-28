@@ -41,7 +41,6 @@ function PostForm({ post }: any) {
                     featuredImage: file ? file.$id : post.featuredImage,
                     status: data.status,
                     username: userData.name,
-                    name: userData.prefs?.name
                 })
 
                 if (dbPost) {
@@ -66,7 +65,6 @@ function PostForm({ post }: any) {
                         ...data,
                         userid: userData.$id,
                         username: userData.name,
-                        name: userData.prefs?.name
                     });
 
                     if (dbPost) {

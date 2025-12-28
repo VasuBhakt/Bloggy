@@ -112,11 +112,12 @@ export default function Post() {
                             <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500 pb-4">
                                 <div className="flex items-center gap-2">
                                     <div className="w-10 h-10 rounded-full bg-lime-100 flex items-center justify-center text-lime-700 font-bold">
-                                        {post.name ? post.name.charAt(0).toUpperCase() : "A"}
+                                        {post.username ? post.username.charAt(0).toUpperCase() : "A"}
                                     </div>
-                                    <div>
-                                        <p className="font-semibold text-gray-900">{post.name || "Anonymous"}</p>
-                                        <p className="text-xs">@{post.username || "author"}</p>
+                                    <div className="flex text-black font-semibold hover:underline">
+                                        <Link to={`/profile/${post.username}`}>
+                                            <p className="text-xs">@{post.username || "author"}</p>
+                                        </Link>
                                     </div>
                                 </div>
                                 <div className="hidden sm:block text-gray-300">|</div>

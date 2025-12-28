@@ -73,7 +73,7 @@ const router = createBrowserRouter([
         element: <Verify />
       },
       {
-        path: "profile",
+        path: "profile/:username",
         element: (
           <Protected>
             <ProfilePage />

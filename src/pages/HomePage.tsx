@@ -128,7 +128,7 @@ function HomePage() {
                                         </div>
                                     }
                                 </div>
-                                <Link to="/profile">
+                                <Link to={`/profile/${user?.name}`}>
                                     <Button className='w-full mt-6'>Edit Profile</Button>
                                 </Link>
                             </div>
