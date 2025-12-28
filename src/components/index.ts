@@ -7,10 +7,8 @@ import Button from "./button/Button";
 import Card from "./cards/Card";
 import Input from "./input/Input";
 import Select from "./input/Select";
-import RTE from "./codeEditor/RTE";
-import PostForm from "./codeEditor/PostForm";
 import Login from "./auth/Login";
 import Signup from "./auth/Signup";
 import NavButton from "./button/NavButton";
 
-export { Header, Footer, LogoutBtn, Container, Logo, Button, Card, Input, Select, RTE, PostForm, Login, Signup, NavButton };
+export { Header, Footer, LogoutBtn, Container, Logo, Button, Card, Input, Select, Login, Signup, NavButton };

@@ -1,10 +1,11 @@
 import { useCallback, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { Button, Input, Select, RTE, Container } from '../index'
-import appwriteService from '../../appwrite/config'
-import algoliaService from '../../algolia/algoliaService'
+import { Button, Input, Select, Container } from '../components/index'
+import appwriteService from '../appwrite/config'
+import algoliaService from '../algolia/algoliaService'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import RTE from './RTE'
 
 interface PostFormData {
     title: string;
