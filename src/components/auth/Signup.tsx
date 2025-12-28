@@ -41,6 +41,9 @@ function Signup() {
                         Already have an account? &nbsp;
                         <Link to='/login' className='font-medium text-primary transition-all duration-200 hover:underline'>Sign in</Link>
                     </p>
+                    <p className='my-2 text-center text-base text-black/60'>
+                        {`(Be careful, username and email cannot be changed later!)`};
+                    </p>
                     <form onSubmit={handleSubmit(signup)}>
                         <div className='space-y-5'>
                             <Input label='Username: ' placeholder='Choose a username' type="text" {...register("username", {

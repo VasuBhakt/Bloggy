@@ -129,7 +129,7 @@ function HomePage() {
                                     }
                                 </div>
                                 <Link to="/profile">
-                                    <Button className='w-full'>Edit Profile</Button>
+                                    <Button className='w-full mt-6'>Edit Profile</Button>
                                 </Link>
                             </div>
                         </div>
