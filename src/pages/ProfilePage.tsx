@@ -80,6 +80,15 @@ function ProfilePage() {
       setLoading(false);
     }
   };
+
+  if (!userPosts) {
+    return (
+      <div className="w-full py-20 text-center min-h-screen flex flex-col items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-lime-500 mx-auto"></div>
+        <p className="mt-4 text-gray-500 font-medium">Loading profile...</p>
+      </div>
+    );
+  }
   if (userData && username === userData.name) {
     return (
       <div className="w-full py-8 bg-gray-50/50 min-h-screen">
