@@ -20,6 +20,7 @@
 ## ✨ Key Features
 *   **Page Transitions:** Animated navigation between routes using **Framer Motion**.
 *   **Search Integration:** Instant search functionality provided by **Algolia**.
+*   **Rich Text Editing:** Rich-text editing provided by **TinyMCE** Text Editor. 
 *   **Content Management:** Secure and scalable storage for posts and images via **Appwrite**.
 *   **Authentication:** User sign-up and login flows with email verification support.
 *   **Responsive Layout:** Adaptive design using **Tailwind CSS**.
