@@ -1,3 +1,4 @@
+// Post Form 
 import { useCallback, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Button, Input, Select, Container } from '../components/index'
@@ -19,8 +20,10 @@ function PostForm({ post }: any) {
 
     const navigate = useNavigate();
     const userData = useSelector((state: any) => state.auth.userData)
+    const [error, setError] = useState<string | null>(null);
+    const [loading, setLoading] = useState(false);
 
-    const { register, handleSubmit, control, getValues, watch, setValue } = useForm<PostFormData>({
+    const { register, handleSubmit, control, getValues, watch, setValue, formState: { errors } } = useForm<PostFormData>({
         defaultValues: {
             title: post?.title || '',
             slug: post?.slug || '',
@@ -30,6 +33,8 @@ function PostForm({ post }: any) {
     });
 
     const submit = async (data: any) => {
+        setError(null);
+        setLoading(true);
         try {
             if (post) {
                 const file = data.image[0] ? await appwriteService.uploadFile(data.image[0]) : null;
@@ -80,10 +85,15 @@ function PostForm({ post }: any) {
 
                         navigate(`/post/${dbPost.$id}/${data.slug}`)
                     }
+                } else {
+                    setError("Featured image is required for new posts.");
                 }
             }
-        } catch (error) {
+        } catch (error: any) {
             console.error("Error submitting post:", error);
+            setError("An unexpected error occurred. Please try again.");
+        } finally {
+            setLoading(false);
         }
     }
 
@@ -138,22 +148,39 @@ function PostForm({ post }: any) {
                     </div>
 
                     <form onSubmit={handleSubmit(submit)} className="flex flex-wrap gap-8 lg:flex-nowrap">
+                        {error && (
+                            <div className="w-full bg-red-50 border-l-4 border-red-400 p-4 mb-6 rounded-r-xl">
+                                <div className="flex items-center">
+                                    <div className="shrink-0">
+                                        <svg className="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                                        </svg>
+                                    </div>
+                                    <div className="ml-3">
+                                        <p className="text-sm text-red-700 font-medium">{error}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
                         {/* Left Column: Content */}
                         <div className="w-full lg:w-2/3 flex flex-col gap-6">
                             <div className="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm">
                                 <Input
                                     label="Title"
                                     placeholder="Enter a catchy title..."
-                                    className="mb-6 text-xl font-semibold"
-                                    {...register("title", { required: true })}
+                                    className="text-xl font-semibold"
+                                    {...register("title", { required: "Title is required" })}
                                 />
+                                {errors.title && <p className="text-red-500 text-xs mt-1 mb-4">{errors.title.message}</p>}
+
                                 <Input
                                     label="Slug"
                                     placeholder="post-url-slug"
-                                    className="mb-6 bg-gray-50 text-gray-500 font-mono text-sm"
+                                    className="bg-gray-50 text-gray-500 font-mono text-sm"
                                     {...register("slug", { required: true })}
                                     readOnly
                                 />
+                                {errors.slug && <p className="text-red-500 text-xs mt-1 mb-4">Slug is required</p>}
                                 <div className="prose-editor">
                                     <RTE label="Content" name="content" control={control} defaultValue={getValues("content")} />
                                 </div>
@@ -188,6 +215,7 @@ function PostForm({ post }: any) {
                                             <p className="text-xs text-gray-400 mt-1">SVG, PNG, JPG or GIF</p>
                                         </div>
                                     </div>
+                                    {errors.image && <p className="text-red-500 text-xs mt-1">Featured image is required</p>}
                                 </div>
 
                                 {(post || imagePreview) && (
@@ -210,9 +238,17 @@ function PostForm({ post }: any) {
                                 <Button
                                     type="submit"
                                     bgColor={post ? "bg-lime-400" : "bg-lime-400"}
-                                    className="w-full text-black! font-bold py-3 rounded-xl shadow-lg hover:shadow-xl hover:bg-lime-500 transition-all transform hover:-translate-y-1"
+                                    disabled={loading}
+                                    className={`w-full text-black! font-bold py-3 rounded-xl shadow-lg transition-all transform ${loading ? 'opacity-70 cursor-not-allowed' : 'hover:shadow-xl hover:bg-lime-500 hover:-translate-y-1'}`}
                                 >
-                                    {post ? "Update Story" : "Publish Story"}
+                                    {loading ? (
+                                        <div className="flex items-center justify-center gap-2">
+                                            <div className="w-4 h-4 border-2 border-black border-t-transparent rounded-full animate-spin"></div>
+                                            <span>Processing...</span>
+                                        </div>
+                                    ) : (
+                                        post ? "Update Story" : "Publish Story"
+                                    )}
                                 </Button>
                             </div>
                         </div>
