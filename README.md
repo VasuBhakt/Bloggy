@@ -20,6 +20,7 @@
 ## ✨ Key Features
 *   **Page Transitions:** Animated navigation between routes using **Framer Motion**.
 *   **Search Integration:** Instant search functionality provided by **Algolia**.
+*   **Rich Text Editing:** Rich-text editing provided by **TinyMCE** Text Editor. 
 *   **Content Management:** Secure and scalable storage for posts and images via **Appwrite**.
 *   **Authentication:** User sign-up and login flows with email verification support.
 *   **Responsive Layout:** Adaptive design using **Tailwind CSS**.
@@ -31,4 +32,35 @@
 - **Advanced Analytics:** Detailed insights into post performance and reader demographics.
 - **Dark Mode:** A sleek, eye-friendly theme for late-night inspiration.
 - **Server Functions:** Automated newsletters and enhanced moderation using Appwrite Functions.
+
+## 🐞 Bug Reporting & Controlled Testing
+We actively welcome bug reports and feedback to help improve Bloggy.
+
+### 🐛 Reporting Bugs
+If you encounter a bug, unexpected behavior, or UI issue, please report it with:
+- A clear description of the issue
+- Steps to reproduce
+- Expected vs actual behavior
+- Screenshots or screen recordings (if possible)
+- Browser and device details
+
+## 🧪 Testing Access (By Permission Only)
+Bloggy supports controlled testing to ensure platform stability and data integrity.
+Testing access is granted on request
+Approved testers may receive:
+- Limited feature access
+- Test credentials or environments
+- Early previews of upcoming features
+### 📌 Note:
+Unauthorized testing, automated scanning, or stress testing without permission is not permitted.
+
+### 📩 How to report or test:
+- Open an issue with the bug label for bugs
+- For testing, reach out with your intent (manual testing / UX feedback / feature validation)
+- Or contact directly via the provided communication channels
+
+### 🤝 Responsible Disclosure
+Security-related issues should be disclosed privately to avoid misuse.
+We appreciate responsible reporting and will acknowledge valid findings.
+
 
