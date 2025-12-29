@@ -60,7 +60,7 @@ export default function Post() {
         visible: { opacity: 1, y: 0 }
     }
 
-    return post ? (
+    return (
         <div className="py-12 min-h-screen">
             <Container>
                 {/* Back Button */}
@@ -171,6 +171,6 @@ export default function Post() {
                 </motion.div >
             </Container >
         </div >
-    ) : null;
+    )
 }
 
