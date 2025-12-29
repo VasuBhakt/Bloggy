@@ -60,6 +60,15 @@ export default function Post() {
         visible: { opacity: 1, y: 0 }
     }
 
+    if (!post) {
+        return (
+            <div className="w-full py-20 text-center min-h-screen flex flex-col items-center justify-center">
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-lime-500 mx-auto"></div>
+                <p className="mt-4 text-gray-500 font-medium">Loading article...</p>
+            </div>
+        );
+    }
+
     return (
         <div className="py-12 min-h-screen">
             <Container>

@@ -21,7 +21,7 @@ function ProfilePage() {
   const [userPosts, setUserPosts] = useState<any[]>([]);
 
   useEffect(() => {
-    if (username && userData && username !== userData.name) {
+    if (username) {
       setLoading(true);
 
       appwriteService.getAllArticles([
@@ -33,7 +33,7 @@ function ProfilePage() {
         }
       }).finally(() => setLoading(false));
     }
-  }, [username, userData]);
+  }, [username]);
 
   const { register, handleSubmit, reset } = useForm({
     defaultValues: {
