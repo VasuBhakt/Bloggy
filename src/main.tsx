@@ -5,7 +5,7 @@ import App from './App.tsx'
 import { Provider } from 'react-redux'
 import store from './store/store.ts'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import { About, AddPost, AllPosts, EditPost, HomePage, Login, Post, Signup, Verify } from './pages'
+import { About, AddPost, AllPosts, EditPost, HomePage, Login, Post, Signup, Verify, ForgotPassword, ResetPassword } from './pages'
 import Protected from './layout/AuthLayout.tsx'
 import ProfilePage from './pages/ProfilePage.tsx'
 
@@ -84,6 +84,18 @@ const router = createBrowserRouter([
         path: "about",
         element: (
           <About />
+        )
+      },
+      {
+        path: "forgot-password",
+        element: (
+          <ForgotPassword />
+        )
+      },
+      {
+        path: "reset-password",
+        element: (
+          <ResetPassword />
         )
       },
     ]

@@ -41,7 +41,7 @@ export class AuthService {
                 // We login first to have a session, then update preferences
                 await this.login({ email, password });
 
-                // Update default prefs, take later from user
+                // Update default preferences
                 await this.account.updatePrefs({
                     prefs: {
                         name: '',
@@ -66,7 +66,6 @@ export class AuthService {
     // User profile update
     async updateProfile({ name, phone, country }: any) {
         try {
-            // only updates prefs for now, password updation to be added later
             await this.account.updatePrefs({
                 prefs: {
                     name: name,
@@ -85,7 +84,7 @@ export class AuthService {
     async verifyEmail() {
         try {
             return await this.account.createEmailVerification({
-                url: `${conf.baseUrl}/verify` // redirect url
+                url: `${conf.baseUrl}/verify`
             });
         } catch (error) {
             console.log("Appwrite service :: verifyEmail :: error", error);
@@ -102,11 +101,11 @@ export class AuthService {
             })
         } catch (error) {
             console.log("Appwrite service :: updateVerify :: error", error);
-            throw error; // Re-throw so component can handle UI error message
+            throw error;
         }
     }
 
-    // User login, only allows one session per device at a time
+    // User login
     async login({ email, password }: LoginRequest) {
         try {
             const session = await this.account.createEmailPasswordSession({
@@ -116,7 +115,7 @@ export class AuthService {
             return session;
         } catch (error) {
             console.log("Appwrite service :: login :: error", error);
-            throw error; // Re-throw so component can handle UI error message
+            throw error;
         }
     }
 
@@ -135,16 +134,42 @@ export class AuthService {
     async logout() {
         try {
             await this.account.deleteSession({
-                sessionId: "current"     // Delete only current session
+                sessionId: "current"
             });
         } catch (error) {
             console.log("Appwrite service :: logout :: error", error);
         }
         return null;
     }
+
+    // Forget Password - Sends recovery email
+    async forgotPassword({ email }: { email: string }) {
+        try {
+            return await this.account.createRecovery({
+                email: email,
+                url: `${conf.baseUrl}/reset-password`
+            });
+        } catch (error) {
+            console.log("Appwrite service :: forgotPassword :: error", error);
+            throw error;
+        }
+    }
+
+    // Reset Password - Updates password using secret from email
+    async resetPassword({ userId, secret, password }: any) {
+        try {
+            return await this.account.updateRecovery({
+                userId,
+                secret,
+                password,
+            });
+        } catch (error) {
+            console.log("Appwrite service :: resetPassword :: error", error);
+            throw error;
+        }
+    }
 }
 
 const authService = new AuthService();
 
 export default authService;
-

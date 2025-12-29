@@ -8,5 +8,7 @@ import Signup from "./Signup";
 import Verify from "./Verify";
 import BlockVerificationUI from "./BlockVerificationUI";
 import About from "./About";
+import ForgotPassword from "./ForgotPassword";
+import ResetPassword from "./ResetPassword";
 
-export { AddPost, AllPosts, EditPost, HomePage, Login, Post, Signup, Verify, BlockVerificationUI, About };
+export { AddPost, AllPosts, EditPost, HomePage, Login, Post, Signup, Verify, BlockVerificationUI, About, ForgotPassword, ResetPassword };

@@ -52,9 +52,14 @@ function Login() {
                                     "Email address must be a valid address"
                             }
                         })} />
-                        <Input label='Password: ' placeholder='Enter your password' type="password" {...register("password", {
-                            required: true,
-                        })} />
+                        <div className='flex flex-col gap-1'>
+                            <Input label='Password: ' placeholder='Enter your password' type="password" {...register("password", {
+                                required: true,
+                            })} />
+                            <div className='flex justify-end'>
+                                <Link to='/forgot-password' title='reset password' className='text-sm text-lime-600 hover:scale-105 duration-200'>Forgot Password?</Link>
+                            </div>
+                        </div>
                         {error && <p className='text-red-500 text-center'>{error}</p>}
                         <Button type="submit" className='w-full'>Sign in</Button>
                     </div>
