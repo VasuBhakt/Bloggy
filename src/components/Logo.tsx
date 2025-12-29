@@ -25,10 +25,6 @@ function Logo({ width = "120px" }: { width?: string }) {
                         className="text-lime-500"
                     />
 
-                    {/* Contrast accents */}
-                    <circle cx="45" cy="35" r="4" fill="black" opacity="0.3" />
-                    <circle cx="45" cy="75" r="4" fill="black" opacity="0.3" />
-
                     {/* Small accent for flair */}
                     <path
                         d="M10 50L22 42V58L10 50Z"

@@ -6,8 +6,6 @@
         stroke-width="12" 
         stroke-linecap="round"
     />
-    <circle cx="45" cy="35" r="4" fill="black" opacity="0.3" />
-    <circle cx="45" cy="75" r="4" fill="black" opacity="0.3" />
     <path 
         d="M10 50L22 42V58L10 50Z" 
         fill="#34d399"
