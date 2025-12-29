@@ -8,9 +8,11 @@ function About() {
         { name: "Appwrite", description: "Backend-as-a-Service for authentication, database, and storage.", color: "bg-pink-500" },
         { name: "Algolia", description: "High-performance search engine for instant results.", color: "bg-blue-600" },
         { name: "Redux Toolkit", description: "State management for predictable app behavior.", color: "bg-purple-600" },
+        { name: "TinyMCE", description: "Rich text editor for content-creation.", color: "bg-yellow-500" },
         { name: "Tailwind CSS", description: "Utility-first CSS framework for modern styling.", color: "bg-teal-500" },
         { name: "Framer Motion", description: "Animation library for smooth page transitions.", color: "bg-indigo-500" },
         { name: "Vercel", description: "Continuous deployment and hosting platform for modern web apps.", color: "bg-white text-black" },
+
     ];
 
     const futurePlans = [
