@@ -26,9 +26,9 @@
 *   **URL Structure:** Posts use a combination of unique IDs and slugs for routing.
 
 ## 🗺️ Future Roadmap
-- [ ] **Social Connectivity:** Implementation of followers, feeds, and user engagement metrics.
-- [ ] **Collaborative Drafting:** Real-time co-authoring tools for shared stories.
-- [ ] **Advanced Analytics:** Detailed insights into post performance and reader demographics.
-- [ ] **Dark Mode:** A sleek, eye-friendly theme for late-night inspiration.
-- [ ] **Server Functions:** Automated newsletters and enhanced moderation using Appwrite Functions.
+- **Social Connectivity:** Implementation of followers, feeds, and user engagement metrics.
+- **Collaborative Drafting:** Real-time co-authoring tools for shared stories.
+- **Advanced Analytics:** Detailed insights into post performance and reader demographics.
+- **Dark Mode:** A sleek, eye-friendly theme for late-night inspiration.
+- **Server Functions:** Automated newsletters and enhanced moderation using Appwrite Functions.
 
