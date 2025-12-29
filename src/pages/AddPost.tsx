@@ -1,3 +1,5 @@
+// Add Post page
+
 import { Container } from "../components"
 import PostForm from "../tinymce/PostForm"
 

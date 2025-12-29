@@ -1,3 +1,5 @@
+// Signup Form
+
 import { useState } from 'react'
 import authService from '../../appwrite/auth'
 import { Link } from 'react-router-dom'
@@ -13,13 +15,13 @@ function Signup() {
     const { register, handleSubmit } = useForm();
 
     const signup = async (data: any) => {
-        setError("");
+        setError(""); // Set error to "" always before signup 
         try {
             const userData = await authService.createAccount(data);
             if (userData) {
                 const user = await authService.getCurrentUser();
                 if (user) {
-                    dispatch(login(user));
+                    dispatch(login(user)); // Dispatch user data to redux and log in the user automatically.
                 }
             }
         } catch (error: any) {

@@ -1,3 +1,5 @@
+// Home Page
+
 import { useEffect, useState } from 'react'
 import appwriteService from '../appwrite/config'
 import { Container, Card, Button } from '../components'
@@ -20,6 +22,7 @@ function HomePage() {
 
     }, [])
 
+    // default page
     if (!authStatus) {
         return (
             <div className='w-full'>
@@ -55,6 +58,7 @@ function HomePage() {
             </div>
         )
     } else {
+        // logged in user
         return (
             <div className='w-full py-12 grow'>
                 <Container>

@@ -1,3 +1,5 @@
+// Reusable Button component
+
 import type { InputHTMLAttributes } from "react";
 
 interface ButtonProps extends InputHTMLAttributes<HTMLButtonElement> {

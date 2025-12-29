@@ -1,3 +1,4 @@
+// Rich Text Editor
 import { Editor } from '@tinymce/tinymce-react'
 import { Controller } from 'react-hook-form';
 import conf from '../config/conf';

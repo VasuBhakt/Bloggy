@@ -1,6 +1,9 @@
+// Configuraton file for managing blogs on Appwrite
+
 import conf from "../config/conf";
 import { Client, TablesDB, Storage, Query, ID } from 'appwrite';
 
+// Article interface
 export interface Article {
     title: string;
     slug: string;
@@ -9,9 +12,9 @@ export interface Article {
     status: string;
     userid: string;
     username: string;
-    name: string;
 }
 
+// Update article interface
 interface UpdateRequest {
     title: string;
     slug: string;
@@ -33,7 +36,8 @@ export class ConfigService {
         this.bucket = new Storage(this.client);
     }
 
-    async createArticle({ title, slug, content, featuredImage, status, userid, username, name }: Article) {
+    // Create article
+    async createArticle({ title, slug, content, featuredImage, status, userid, username }: Article) {
         try {
             return await this.tables.createRow({
                 databaseId: conf.appwriteDatabaseId,
@@ -47,7 +51,6 @@ export class ConfigService {
                     status,
                     userid,
                     username,
-                    name
                 }
             });
         } catch (error) {
@@ -55,6 +58,7 @@ export class ConfigService {
         }
     }
 
+    // Update article
     async updateArticle(id: string, { title, slug, content, featuredImage, status }: UpdateRequest) {
         try {
             return await this.tables.updateRow({
@@ -74,6 +78,7 @@ export class ConfigService {
         }
     }
 
+    // Delete article
     async deleteArticle(id: string) {
         try {
             await this.tables.deleteRow({
@@ -88,6 +93,7 @@ export class ConfigService {
         }
     }
 
+    // Get Article by ID
     async getArticle(id: string) {
         try {
             return await this.tables.getRow({
@@ -100,6 +106,7 @@ export class ConfigService {
         }
     }
 
+    // Get all articles of user with userid
     async getAllArticlesOfUser(userid: string, queries = [Query.equal("userid", userid)]) {
         try {
             const articles = await this.tables.listRows({
@@ -113,6 +120,7 @@ export class ConfigService {
         }
     }
 
+    // Get all articles with status active
     async getAllArticles(queries = [Query.equal("status", "active")]) {
         try {
             const articles = await this.tables.listRows({
@@ -128,6 +136,7 @@ export class ConfigService {
 
     // File upload
 
+    // Image upload
     async uploadFile(file: File) {
         try {
             const fileUploaded = await this.bucket.createFile({
@@ -141,6 +150,7 @@ export class ConfigService {
         }
     }
 
+    // Image delete
     async deleteFile(fileId: string) {
         try {
             await this.bucket.deleteFile({
@@ -153,6 +163,7 @@ export class ConfigService {
         }
     }
 
+    // View file
     fileView(fileId: string) {
         const preview = this.bucket.getFileView({
             bucketId: conf.appwriteBucketId,

@@ -1,3 +1,5 @@
+// Email verify redirect page
+
 import { useEffect, useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import authService from '../appwrite/auth'

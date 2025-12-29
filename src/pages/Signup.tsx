@@ -1,3 +1,5 @@
+// Signup Page
+
 import SignupForm from "../components/auth/Signup"
 
 function Signup() {

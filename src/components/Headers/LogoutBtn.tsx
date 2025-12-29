@@ -1,3 +1,5 @@
+// Logout Button 
+
 import { useDispatch } from "react-redux"
 import authService from "../../appwrite/auth"
 import { logout } from "../../features/authSlice"
@@ -8,13 +10,14 @@ function LogoutBtn() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
+    // logout functionality
     const logoutUser = () => {
         authService.logout()
             .then(() => {
                 dispatch(logout());
             })
             .then(() => {
-                navigate("/");
+                navigate("/"); // navigate to home page
             })
             .catch((error) => {
                 console.log("LogoutBtn :: logoutUser :: error", error);

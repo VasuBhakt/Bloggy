@@ -1,3 +1,5 @@
+// Login Form
+
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { login as authLogin } from '../../features/authSlice'
@@ -13,14 +15,14 @@ function Login() {
     const [error, setError] = useState("");
 
     const login = async (data: any) => {
-        setError("");
+        setError(""); // set error to "" before login always
         try {
             const session = await authService.login(data);
             if (session) {
                 const userData = await authService.getCurrentUser();
                 if (userData) {
-                    dispatch(authLogin(userData));
-                    navigate("/");
+                    dispatch(authLogin(userData)); // dispatch user data to redux
+                    navigate("/"); // navigate to home
                 }
             }
         } catch (error: any) {

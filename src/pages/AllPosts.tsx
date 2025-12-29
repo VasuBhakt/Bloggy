@@ -1,3 +1,5 @@
+// All posts
+
 import { useState, useEffect } from "react";
 import appwriteService from "../appwrite/config";
 import SearchEngine from "../algolia/SearchEngine";

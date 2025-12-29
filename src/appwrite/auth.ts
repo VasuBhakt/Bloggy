@@ -1,6 +1,9 @@
+//Auth managment for appwrite
+
 import conf from "../config/conf";
 import { Client, Account, ID } from 'appwrite';
 
+// Signup request interface, can be changed as needed
 interface SignupRequest {
     email: string;
     password: string;
@@ -9,7 +12,7 @@ interface SignupRequest {
     phone: string;
     country: string;
 }
-
+// Login request interface, can be changed as needed
 interface LoginRequest {
     email: string;
     password: string;
@@ -25,6 +28,7 @@ export class AuthService {
         this.account = new Account(this.client);
     }
 
+    // Account signup method
     async createAccount({ email, password, username }: SignupRequest) {
         try {
             const userAccount = await this.account.create({
@@ -37,6 +41,7 @@ export class AuthService {
                 // We login first to have a session, then update preferences
                 await this.login({ email, password });
 
+                // Update default prefs, take later from user
                 await this.account.updatePrefs({
                     prefs: {
                         name: '',
@@ -46,6 +51,7 @@ export class AuthService {
 
                 });
 
+                // send verification mail
                 await this.verifyEmail();
                 return userAccount;
             } else {
@@ -56,8 +62,11 @@ export class AuthService {
             throw error;
         }
     }
+
+    // User profile update
     async updateProfile({ name, phone, country }: any) {
         try {
+            // only updates prefs for now, password updation to be added later
             await this.account.updatePrefs({
                 prefs: {
                     name: name,
@@ -71,10 +80,12 @@ export class AuthService {
             throw error;
         }
     }
+
+    // Email verification
     async verifyEmail() {
         try {
             return await this.account.createEmailVerification({
-                url: "http://localhost:5173/verify"
+                url: "http://localhost:5173/verify" // redirect url
             });
         } catch (error) {
             console.log("Appwrite service :: verifyEmail :: error", error);
@@ -82,6 +93,7 @@ export class AuthService {
         }
     }
 
+    // Email verification update on redirected url
     async updateVerify({ userId, secret }: { userId: string, secret: string }) {
         try {
             return await this.account.updateEmailVerification({
@@ -90,18 +102,13 @@ export class AuthService {
             })
         } catch (error) {
             console.log("Appwrite service :: updateVerify :: error", error);
-            throw error;
+            throw error; // Re-throw so component can handle UI error message
         }
     }
 
+    // User login, only allows one session per device at a time
     async login({ email, password }: LoginRequest) {
         try {
-            try {
-                // Pre-emptively delete existing sessions to avoid "Session is active" error
-                await this.account.deleteSession({ sessionId: 'current' });
-            } catch {
-                // No active session, safe to proceed
-            }
             const session = await this.account.createEmailPasswordSession({
                 email: email,
                 password: password
@@ -113,6 +120,7 @@ export class AuthService {
         }
     }
 
+    // Get current logged in user
     async getCurrentUser() {
         try {
             const user = await this.account.get();
@@ -123,9 +131,12 @@ export class AuthService {
         return null;
     }
 
+    // User logout
     async logout() {
         try {
-            await this.account.deleteSessions();
+            await this.account.deleteSession({
+                sessionId: "current"     // Delete only current session
+            });
         } catch (error) {
             console.log("Appwrite service :: logout :: error", error);
         }

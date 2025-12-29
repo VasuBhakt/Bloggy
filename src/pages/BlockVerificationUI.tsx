@@ -1,3 +1,5 @@
+// Auth Layout default view when verification is pending
+
 import authService from "../appwrite/auth";
 
 function BlockVerificationUI() {

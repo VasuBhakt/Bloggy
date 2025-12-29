@@ -1,3 +1,5 @@
+// Search Engine component
+
 import { liteClient as algoliasearch } from "algoliasearch/lite";
 import { Hits, InstantSearch, SearchBox, Configure, useInstantSearch } from "react-instantsearch";
 import conf from "../config/conf";
@@ -7,8 +9,9 @@ import { useMemo, type ReactNode } from "react";
 
 // This component renders a single search result
 function Hit({ hit }: { hit: any }) {
-    if (hit.status !== 'active') return null;
+    if (hit.status !== 'active') return null; // active post check
 
+    // return single element in card
     return (
         <div className="transform transition-all duration-300 hover:scale-105">
             <Card
@@ -30,8 +33,9 @@ function SearchResults({ defaultView }: { defaultView: ReactNode }) {
     const isSearching = (uiState[conf.algoliaIndexName]?.query || "").length > 0;
 
     // Check if we have algolia results
-    const hasResults = results?.hits.some(hit => hit.status === 'active'); // Smart check
+    const hasResults = results?.hits.some(hit => hit.status === 'active'); // Check for active posts
 
+    // if User is searching, show algolia results
     if (isSearching) {
         return (
             <div className="py-12">
@@ -42,7 +46,7 @@ function SearchResults({ defaultView }: { defaultView: ReactNode }) {
                             item: "list-none"
                         }} />
                     </div>
-                    {/* Optional: Show message if no results found */}
+                    {/* Show message if no results found */}
                     {!hasResults && (
                         <div className="flex flex-col items-center justify-center py-20 text-center">
                             <div className="bg-gray-100 rounded-full p-6 mb-4">
@@ -75,6 +79,7 @@ function SearchEngine({ defaultView }: SearchEngineProps) {
         return algoliasearch(conf.algoliaApplicationId, conf.algoliaSearchApiKey);
     }, []);
 
+    // Instant Search
     return (
         <div className="w-full min-h-screen">
             <InstantSearch searchClient={searchClient} indexName={conf.algoliaIndexName}>
@@ -104,7 +109,7 @@ function SearchEngine({ defaultView }: SearchEngineProps) {
                     </Container>
                 </div>
 
-                {/* Use our smart component that switches views */}
+                {/* Use smart component that switches views */}
                 <SearchResults defaultView={defaultView} />
 
             </InstantSearch>

@@ -1,3 +1,5 @@
+// Edit Post page
+
 import { useEffect, useState } from "react"
 import { Container } from "../components"
 import PostForm from "../tinymce/PostForm"

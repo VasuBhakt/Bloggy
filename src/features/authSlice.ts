@@ -1,3 +1,5 @@
+// Auth Slice for redux
+
 import { createSlice } from "@reduxjs/toolkit";
 
 interface AuthState {

@@ -1,4 +1,6 @@
-import { Container, Logo, LogoutBtn, NavButton } from "../index";
+// Header component
+
+import { Button, Container, Logo, LogoutBtn } from "../index";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -44,7 +46,9 @@ function Header() {
                             </li>
                             <li>
                                 <Link to="/register">
-                                    <NavButton label="Register Now" />
+                                    <Button className="hover:scale-110 duration-200 shadow-[0_0_20px_rgba(163,230,53,0.3)]" textColor='text-lime-300' bgColor="bg-black">
+                                        Get Started
+                                    </Button>
                                 </Link>
                             </li>
                         </ul>
