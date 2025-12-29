@@ -16,17 +16,31 @@ function BlockVerificationUI() {
                     onClick={() => {
                         authService.verifyEmail().then(() => alert("Verification email resent!"));
                     }}
-
+                    className="px-6 py-2 rounded-lg font-bold hover:bg-zinc-800 transition-colors"
+                    bgColor="bg-zinc-900"
+                    textColor="text-white"
                 >
                     Resend Email
                 </Button>
                 <Button
                     onClick={() => window.location.reload()}
                     className="px-6 py-2 rounded-lg font-bold hover:bg-lime-400 transition-colors"
-                    bgColor="bg-lime-400"
+                    bgColor="bg-lime-500"
                     textColor="text-black"
                 >
                     I've verified my email
+                </Button>
+                <Button
+                    onClick={() => {
+                        authService.logout().then(() => {
+                            window.location.reload();
+                        })
+                    }}
+                    className="px-6 py-2 rounded-lg font-bold border border-white/10 hover:bg-zinc-900 transition-colors"
+                    bgColor="bg-black"
+                    textColor="text-white"
+                >
+                    Logout
                 </Button>
             </div>
         </div>
