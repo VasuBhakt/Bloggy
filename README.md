@@ -1,17 +1,17 @@
 # Bloggy 🚀
 
-**Bloggy** is a simple and powerful blogging platform built around one idea: Read. Write. Connect. It gives creators a space to share their thoughts, stories, and ideas while discovering content from others around the world. Whether you're writing your first blog post or building a growing audience, Bloggy makes publishing effortless and meaningful by bringing readers and writers together in one connected community.
+**Bloggy** is a simple and powerful blogging platform built around one idea: ***Read. Write. Connect.*** It gives creators a space to share their thoughts, stories, and ideas while discovering content from others around the world. Whether you're writing your first blog post or building a growing audience, Bloggy makes publishing effortless and meaningful by bringing readers and writers together in one connected community.
 
 ## 🌟 The Vision
 
 **Bloggy** is evolving from a simple blogging platform into a collaborative social ecosystem. Our mission is to create a digital space where ideas aren't just published, but shared, critiqued, and built upon by a global community of thinkers and creators.
 
 ## 🛠️ The Tech Stack
-*   **Frontend:** React 18, TypeScript, Vite
-*   **Styling:** Tailwind CSS (Modern, utility-first styling)
-*   **Animations:** Framer Motion (Smooth page transitions and micro-interactions)
-*   **Backend:** Appwrite (Authentication, Database, Storage)
-*   **Search:** Algolia (Instant search results)
+*   **Frontend:** React 19, Vite
+*   **Styling:** Tailwind CSS 
+*   **Animations:** Framer Motion
+*   **Backend:** Appwrite
+*   **Search:** Algolia
 *   **State Management:** Redux Toolkit
 *   **Form Handling:** React Hook Form
 *   **Editor:** TinyMCE (Rich text editing)
@@ -33,4 +33,3 @@
 - [ ] **Server Functions:** Automated newsletters and enhanced moderation using Appwrite Functions.
 
 ---
-Built with passion by **Swastik Bose** | © 2025 VasuBhakt
