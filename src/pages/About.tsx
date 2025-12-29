@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Container } from '../components';
+import conf from '../config/conf';
 
 function About() {
     const techStack = [
@@ -57,13 +58,13 @@ function About() {
                         </p>
 
                         <div className="flex gap-4">
-                            <a href="https://github.com/VasuBhakt" target="_blank" rel="noreferrer" className="px-6 py-3 bg-white text-black font-bold rounded-xl hover:bg-lime-400 transition-colors">
+                            <a href={conf.githubUrl} target="_blank" rel="noreferrer" className="px-6 py-3 bg-white text-black font-bold rounded-xl hover:bg-lime-400 transition-colors">
                                 GitHub
                             </a>
-                            <a href="https://www.linkedin.com/in/swastik-bose/" target="_blank" rel="noreferrer" className="px-6 py-3 border border-gray-700 text-white font-bold rounded-xl hover:border-lime-400 transition-colors">
+                            <a href={conf.linkedinUrl} target="_blank" rel="noreferrer" className="px-6 py-3 border border-gray-700 text-white font-bold rounded-xl hover:border-lime-400 transition-colors">
                                 LinkedIn
                             </a>
-                            <a href="https://www.instagram.com/_swaztik_/" target="_blank" rel="noreferrer" className="px-6 py-3 bg-linear-to-r from-pink-500 to-purple-700 text-black font-bold rounded-xl transition-colors">
+                            <a href={conf.instagramUrl} target="_blank" rel="noreferrer" className="px-6 py-3 bg-linear-to-r from-pink-500 to-purple-700 text-black font-bold rounded-xl transition-colors">
                                 Instagram
                             </a>
                         </div>

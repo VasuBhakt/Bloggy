@@ -1,6 +1,7 @@
 // Footer component
 import { Link } from "react-router-dom";
 import Logo from "../Logo";
+import conf from "../../config/conf";
 
 function Footer() {
     return (
@@ -35,14 +36,14 @@ function Footer() {
                                     <li>
                                         <a target="_blank" rel="noreferrer"
                                             className="text-base text-gray-400 hover:text-lime-400 transition-colors duration-200"
-                                            href="https://github.com/VasuBhakt">
+                                            href={conf.githubUrl}>
                                             GitHub
                                         </a>
                                     </li>
                                     <li>
                                         <a target="_blank" rel="noreferrer"
                                             className="text-base text-gray-400 hover:text-lime-400 transition-colors duration-200"
-                                            href="https://www.linkedin.com/in/swastik-bose/">
+                                            href={conf.linkedinUrl}>
                                             LinkedIn
                                         </a>
                                     </li>
@@ -77,21 +78,21 @@ function Footer() {
                                     <li>
                                         <a target="_blank" rel="noreferrer"
                                             className="text-base text-gray-400 hover:text-lime-400 transition-colors duration-200"
-                                            href="https://github.com/VasuBhakt/Bloggy">
+                                            href={conf.sourceCodeUrl}>
                                             Source Code
                                         </a>
                                     </li>
                                     <li>
                                         <a target="_blank" rel="noreferrer"
                                             className="text-base text-gray-400 hover:text-lime-400 transition-colors duration-200"
-                                            href="https://github.com/VasuBhakt/Bloggy/blob/main/README.md">
+                                            href={conf.documentationUrl}>
                                             Documentation
                                         </a>
                                     </li>
                                     <li>
                                         <a target="_blank" rel="noreferrer"
                                             className="text-base text-gray-400 hover:text-lime-400 transition-colors duration-200"
-                                            href="https://github.com/VasuBhakt/Bloggy/issues">
+                                            href={conf.reportABugUrl}>
                                             Report a Bug
                                         </a>
                                     </li>

@@ -11,6 +11,14 @@ const conf = {
     algoliaSearchApiKey: import.meta.env.VITE_ALGOLIA_SEARCH_API_KEY,
     algoliaAdminApiKey: import.meta.env.VITE_ALGOLIA_ADMIN_API_KEY,
     algoliaIndexName: import.meta.env.VITE_ALGOLIA_INDEX_NAME,
+
+    githubUrl: import.meta.env.VITE_GITHUB_URL,
+    linkedinUrl: import.meta.env.VITE_LINKEDIN_URL,
+    instagramUrl: import.meta.env.VITE_INSTAGRAM_URL,
+
+    sourceCodeUrl: import.meta.env.VITE_SOURCE_CODE_URL,
+    documentationUrl: import.meta.env.VITE_DOCUMENTATION_URL,
+    reportABugUrl: import.meta.env.VITE_REPORT_A_BUG_URL,
 }
 
 export default conf
