@@ -43,8 +43,8 @@ function HomePage() {
     // default page
     if (!authStatus) {
         return (
-            <div className='w-full'>
-                <div className='w-full text-center py-20'>
+            <div className='w-full grow flex flex-col'>
+                <div className='w-full text-center py-20 grow flex items-center justify-center'>
                     <Container>
                         <motion.div
                             initial="hidden"
@@ -54,19 +54,19 @@ function HomePage() {
                         >
                             <motion.h1
                                 variants={itemVariants}
-                                className='text-8xl font-bold text-gradient-lime py-4'
+                                className='text-4xl md:text-8xl font-bold text-gradient-lime py-4'
                             >
                                 Welcome to Bloggy!
                             </motion.h1>
                             <motion.h2
                                 variants={itemVariants}
-                                className='text-6xl py-4 font-light'
+                                className='text-2xl md:text-6xl py-4 font-light text-gray-800'
                             >
                                 Read. Write. Connect.
                             </motion.h2>
                             <motion.p
                                 variants={itemVariants}
-                                className='py-12 text-3xl text-gray-700 max-w-4xl'
+                                className='py-8 md:py-12 text-lg md:text-3xl text-gray-700 max-w-4xl'
                             >
                                 Bloggy is a simple and powerful blogging platform built around one idea: Read. Write. Connect.
                                 It gives creators a space to share their thoughts, stories, and ideas while discovering content from
@@ -82,13 +82,13 @@ function HomePage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
                     viewport={{ once: true }}
-                    className='w-full py-15 bg-black text-center'
+                    className='w-full py-12 md:py-15 bg-black text-center mt-auto'
                 >
-                    <h2 className='text-5xl mb-12 font-semibold text-lime-500'>
+                    <h2 className='text-3xl md:text-5xl mb-8 md:mb-12 font-semibold text-lime-500'>
                         Launch your idea today!
                     </h2>
                     <Link to="/register">
-                        <Button className="bg-lime-500 text-black text-3xl px-12 py-4 hover:bg-lime-400 hover:scale-110 duration-200 shadow-[0_0_20px_rgba(163,230,53,0.3)]" textColor='text-black'>
+                        <Button className="bg-lime-500 text-black text-xl md:text-3xl px-8 md:px-12 py-3 md:py-4 hover:bg-lime-400 hover:scale-110 duration-200 shadow-[0_0_20px_rgba(163,230,53,0.3)]" textColor='text-black'>
                             Register Now
                         </Button>
                     </Link>
