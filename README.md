@@ -18,12 +18,12 @@
 *   **Deployment:** Vercel
 
 ## ✨ Key Features
-*   **Fast Navigation:** Optimized page transitions using Framer Motion and React Router.
-*   **Instant Search:** Deep-indexed content search powered by Algolia.
-*   **Headless Content Management:** Secure and scalable storage for posts and images via Appwrite.
-*   **Secure Authentication:** Multi-factor ready auth with email verification flows.
-*   **Responsive UI:** Mobile-first design with a custom-engineered design system.
-*   **Dynamic Slugs:** SEO-friendly URLs that combine uniqueness with readable slugs.
+*   **Page Transitions:** Animated navigation between routes using **Framer Motion**.
+*   **Search Integration:** Instant search functionality provided by **Algolia**.
+*   **Content Management:** Secure and scalable storage for posts and images via **Appwrite**.
+*   **Authentication:** User sign-up and login flows with email verification support.
+*   **Responsive Layout:** Adaptive design using **Tailwind CSS**.
+*   **URL Structure:** Posts use a combination of unique IDs and slugs for routing.
 
 ## 🗺️ Future Roadmap
 - [ ] **Social Connectivity:** Implementation of followers, feeds, and user engagement metrics.
@@ -32,4 +32,3 @@
 - [ ] **Dark Mode:** A sleek, eye-friendly theme for late-night inspiration.
 - [ ] **Server Functions:** Automated newsletters and enhanced moderation using Appwrite Functions.
 
----
