@@ -7,5 +7,6 @@ import Post from "./Post";
 import Signup from "./Signup";
 import Verify from "./Verify";
 import BlockVerificationUI from "./BlockVerificationUI";
+import About from "./About";
 
-export { AddPost, AllPosts, EditPost, HomePage, Login, Post, Signup, Verify, BlockVerificationUI };
+export { AddPost, AllPosts, EditPost, HomePage, Login, Post, Signup, Verify, BlockVerificationUI, About };

@@ -5,7 +5,7 @@ import App from './App.tsx'
 import { Provider } from 'react-redux'
 import store from './store/store.ts'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import { AddPost, AllPosts, EditPost, HomePage, Login, Post, Signup, Verify } from './pages'
+import { About, AddPost, AllPosts, EditPost, HomePage, Login, Post, Signup, Verify } from './pages'
 import Protected from './layout/AuthLayout.tsx'
 import ProfilePage from './pages/ProfilePage.tsx'
 
@@ -78,6 +78,12 @@ const router = createBrowserRouter([
           <Protected>
             <ProfilePage />
           </Protected>
+        )
+      },
+      {
+        path: "about",
+        element: (
+          <About />
         )
       },
     ]
