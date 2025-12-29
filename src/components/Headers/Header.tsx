@@ -35,6 +35,13 @@ function Header() {
                                         className={`inline-block px-6 py-2 duration-200 font-semibold rounded-b-3xl hover:text-lime-500`}>Explore</button>
                                 </Link>
                             </li>
+                            <li>
+                                <Link to="/about">
+                                    <button
+                                        onClick={() => navigate("/about")}
+                                        className={`inline-block px-6 py-2 duration-200 font-semibold rounded-b-3xl hover:text-lime-500`}>About</button>
+                                </Link>
+                            </li>
                         </ul>
                         <ul className="flex ml-auto items-center">
                             <li>
