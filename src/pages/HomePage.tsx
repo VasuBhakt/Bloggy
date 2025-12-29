@@ -28,6 +28,7 @@ function HomePage() {
             <div className='w-full'>
                 <div className='w-full text-center py-20'>
                     <Container>
+
                         <div className='flex flex-col items-center justify-center space-y-4'>
                             <h1 className='text-8xl font-bold text-gradient-lime animate-fade-in-up py-4'>
                                 Welcome to Bloggy!
@@ -133,7 +134,7 @@ function HomePage() {
                                     }
                                 </div>
                                 <Link to={`/profile/${user?.name}`}>
-                                    <Button className='w-full mt-6'>Edit Profile</Button>
+                                    <Button className='w-full mt-6' bgColor='bg-lime-400 hover:bg-lime-300' textColor='text-black'>Edit Profile</Button>
                                 </Link>
                             </div>
                         </div>

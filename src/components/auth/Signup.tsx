@@ -61,7 +61,9 @@ function Signup() {
                             <Input label='Password: ' placeholder='Enter your password' type="password" {...register("password", {
                                 required: true,
                             })} />
-                            {error && <p className='text-red-500 text-center'>{error}</p>}
+                            {error && <p className='text-red-500 text-center'>{
+                                error === "A user with the same id, email, or phone already exists in this project." ? "User with same email or username already exists" : "There seems to be a problem, please try again later!"
+                            }</p>}
                             <Button type="submit" className='w-full'>Create Account</Button>
 
                         </div>
