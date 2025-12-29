@@ -80,7 +80,7 @@ function ProfilePage() {
       setLoading(false);
     }
   };
-  if (username === userData.name) {
+  if (userData && username === userData.name) {
     return (
       <div className="w-full py-8 bg-gray-50/50 min-h-screen">
         <Container>
