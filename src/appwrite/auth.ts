@@ -85,7 +85,7 @@ export class AuthService {
     async verifyEmail() {
         try {
             return await this.account.createEmailVerification({
-                url: "http://localhost:5173/verify" // redirect url
+                url: `${conf.baseUrl}/verify` // redirect url
             });
         } catch (error) {
             console.log("Appwrite service :: verifyEmail :: error", error);

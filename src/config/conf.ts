@@ -19,6 +19,8 @@ const conf = {
     sourceCodeUrl: import.meta.env.VITE_SOURCE_CODE_URL,
     documentationUrl: import.meta.env.VITE_DOCUMENTATION_URL,
     reportABugUrl: import.meta.env.VITE_REPORT_A_BUG_URL,
+
+    baseUrl: import.meta.env.VITE_BASE_URL || "http://localhost:5173",
 }
 
 export default conf
