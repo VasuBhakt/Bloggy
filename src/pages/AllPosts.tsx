@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import appwriteService from "../appwrite/config";
 import SearchEngine from "../algolia/SearchEngine";
 import { Container, Card } from "../components";
+import { motion } from "framer-motion";
 
 function AllPosts() {
     const [posts, setPosts] = useState<any[]>([]);
@@ -18,14 +19,43 @@ function AllPosts() {
         });
     }, []);
 
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.1
+            }
+        }
+    }
+
+    const itemVariants = {
+        hidden: { y: 20, opacity: 0 },
+        visible: {
+            y: 0,
+            opacity: 1
+        }
+    }
+
     // This is the view we want to show when NOT searching
     // It's just the standard grid of latest posts
     const defaultView = (
         <div className="py-12">
             <Container>
-                <h2 className="text-2xl font-bold mb-6 text-gray-800">Latest Stories</h2>
-                {posts.length === 0 && (
-                    <div className="flex flex-col items-center justify-center py-24 px-4 text-center">
+                <motion.h2
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    className="text-2xl font-bold mb-6 text-gray-800"
+                >
+                    Latest Stories
+                </motion.h2>
+
+                {posts.length === 0 && !isLoading && (
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        className="flex flex-col items-center justify-center py-24 px-4 text-center"
+                    >
                         <div className="bg-gray-100 rounded-full p-5 mb-6">
                             <span className="text-4xl">📝</span>
                         </div>
@@ -36,17 +66,25 @@ function AllPosts() {
                             No stories here for now — but great ones are probably on the way.
                             Why not give it a try yourself?
                         </p>
-                    </div>
+                    </motion.div>
                 )}
 
                 {isLoading ? (
                     <div className="text-center py-20">Loading...</div>
                 ) : (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <motion.div
+                        variants={containerVariants}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+                    >
                         {posts.map((post) => (
-                            <div
+                            <motion.div
                                 key={post.$id}
-                                className="transform transition-all duration-300 hover:scale-105"
+                                variants={itemVariants}
+                                whileHover={{ scale: 1.05 }}
+                                transition={{ type: "spring", stiffness: 300 }}
                             >
                                 <Card
                                     title={post.title}
@@ -55,9 +93,9 @@ function AllPosts() {
                                     slug={post.slug}
                                     username={post.username}
                                 />
-                            </div>
+                            </motion.div>
                         ))}
-                    </div>
+                    </motion.div>
                 )}
             </Container>
         </div>
@@ -65,15 +103,10 @@ function AllPosts() {
 
     return (
         <div className="w-full">
-            {/* 
-                We pass the defaultView to SearchEngine.
-                SearchEngine handles the Header, Search Box, and decides:
-                - If searching: Show Algolia Results
-                - If NOT searching: Show this defaultView
-            */}
             <SearchEngine defaultView={defaultView} />
         </div>
     );
 }
+
 
 export default AllPosts;
