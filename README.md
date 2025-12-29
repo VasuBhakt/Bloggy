@@ -18,11 +18,11 @@
 *   **Deployment:** Vercel
 
 ## ✨ Key Features
-*   **Blazing Fast Navigation:** Optimized page transitions using Framer Motion and React Router.
+*   **Fast Navigation:** Optimized page transitions using Framer Motion and React Router.
 *   **Instant Search:** Deep-indexed content search powered by Algolia.
 *   **Headless Content Management:** Secure and scalable storage for posts and images via Appwrite.
 *   **Secure Authentication:** Multi-factor ready auth with email verification flows.
-*   **Responsive & Premium UI:** Mobile-first design with a custom-engineered design system.
+*   **Responsive UI:** Mobile-first design with a custom-engineered design system.
 *   **Dynamic Slugs:** SEO-friendly URLs that combine uniqueness with readable slugs.
 
 ## 🗺️ Future Roadmap
