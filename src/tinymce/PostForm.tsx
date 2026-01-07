@@ -86,7 +86,7 @@ function PostForm({ post }: any) {
                         navigate(`/post/${dbPost.$id}/${data.slug}`)
                     }
                 } else {
-                    setError("Featured image is required for new posts.");
+                    setError("Featured image is required for new posts. Check if you uploaded the correct file type. Try uploading a file with anyone of the allowed file types");
                 }
             }
         } catch (error: any) {
@@ -144,12 +144,8 @@ function PostForm({ post }: any) {
                         <h1 className="text-3xl font-bold text-gray-800">
                             {post ? "Edit Story" : "Create a new Story"}
                         </h1>
-                        <p className="text-gray-500 mt-2">Share your thoughts with the world</p>
-                    </div>
-
-                    <form onSubmit={handleSubmit(submit)} className="flex flex-wrap gap-8 lg:flex-nowrap">
                         {error && (
-                            <div className="w-full bg-red-50 border-l-4 border-red-400 p-4 mb-6 rounded-r-xl">
+                            <div className="w-full bg-red-50 border-l-4 border-red-400 p-4 m-6 rounded-r-xl">
                                 <div className="flex items-center">
                                     <div className="shrink-0">
                                         <svg className="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
@@ -162,6 +158,11 @@ function PostForm({ post }: any) {
                                 </div>
                             </div>
                         )}
+                        <p className="text-gray-500 mt-2">Share your thoughts with the world</p>
+                    </div>
+
+                    <form onSubmit={handleSubmit(submit)} className="flex flex-wrap gap-8 lg:flex-nowrap">
+
                         {/* Left Column: Content */}
                         <div className="w-full lg:w-2/3 flex flex-col gap-6">
                             <div className="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm">
@@ -171,7 +172,6 @@ function PostForm({ post }: any) {
                                     className="text-xl font-semibold"
                                     {...register("title", { required: "Title is required" })}
                                 />
-                                {errors.title && <p className="text-red-500 text-xs mt-1 mb-4">{errors.title.message}</p>}
 
                                 <Input
                                     label="Slug"
