@@ -10,21 +10,14 @@ import pic from "../../public/homepage_image.avif"
 
 function HomePage() {
     const [posts, setPosts] = useState<any>([])
-    const [publicPosts, setPublicPosts] = useState<any>([])
     const authStatus = useSelector((state: any) => state.auth.status);
     const user = useSelector((state: any) => state.auth.userData);
 
     useEffect(() => {
-        if (authStatus && user?.$id) {
+        if (authStatus) {
             appwriteService.getAllArticlesOfUser(user.$id).then((posts) => {
                 if (posts) {
                     setPosts(posts)
-                }
-            })
-        } else if (!authStatus) {
-            appwriteService.getAllArticles().then((posts) => {
-                if (posts) {
-                    setPublicPosts(posts.slice(0, 3)) // Show only top 3 on landing
                 }
             })
         }
