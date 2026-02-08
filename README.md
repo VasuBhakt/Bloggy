@@ -1,5 +1,9 @@
 # Bloggy 🚀
 
+<p align="center">
+  <img src="public/favicon.svg" height="240px">
+</p>
+
 **Bloggy** is a simple and powerful blogging platform built around one idea: ***Read. Write. Connect.*** It gives creators a space to share their thoughts, stories, and ideas while discovering content from others around the world. Whether you're writing your first blog post or building a growing audience, Bloggy makes publishing effortless and meaningful by bringing readers and writers together in one connected community.
 
 ## 🌟 The Vision
